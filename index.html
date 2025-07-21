@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starter HTML JS CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body style="overflow: auto;">
+    <header>
+        <h1>All About Band</h1>
+        <nav>
+            <div class="name-box" data-target="content-guitar">
+                <p class="tab-name">Electric Guitar</p>
+            </div>
+            <div class="name-box" data-target="content-bass">
+                <p class="tab-name">Bass Guitar</p>
+            </div>
+            <div class="name-box" data-target="content-drum">
+                <p class="tab-name">Drums</p>
+            </div>
+            <div class="name-box" data-target="content-singer">
+                <p class="tab-name">Singer</p>
+            </div>
+            <div class="name-box" data-target="content-piano">
+                <p class="tab-name">Piano</p>
+            </div>
+            <div class="name-box" data-target="content-quiz">
+                <p class="tab-name">Quiz</p>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="content-guitar" class="content-section">
+            <h2>Electric Guitar</h2>
+            <img id="InstrumentImg" src="images/Guitar.jpg" alt="Guitar image">
+
+        </section>
+
+        <section id="content-bass" class="content-section">
+            <h2>Bass</h2>
+        </section>
+
+        <section id="content-drum" class="content-section">
+            <h2>Drum</h2>
+        </section>
+
+        <section id="content-singer" class="content-section">
+            <h2>Singer</h2>
+        </section>
+
+        <section id="content-piano" class="content-section">
+            <h2>Piano</h2>
+        </section>
+
+        <section id="content-quiz" class="content-section">
+            <h2>Quiz</h2>
+
+            <div class = "quiz-Container">
+                <!--the quiz itself-->
+                <div class="quiz">
+                    <!--base questions (will not show)-->
+                    <h2 id = "question"> Question goes here</h2>
+                    <!--image for the quiz-->
+                    <img id="question-image" src="images/quiz/quiz1.png" alt="Quiz images">
+                    <!--each button is 1 option for the MCQ-->
+                    <div id="answer-buttons">
+                        <button class = "btn">Answer 1</button>
+                        <button class = "btn">Answer 2</button>
+                        <button class = "btn">Answer 3</button>
+                        <button class = "btn">Answer 4</button>
+                    </div>
+                    <!--NEXT button to go to the next question-->
+                    <button id = "next-btn">Next</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>

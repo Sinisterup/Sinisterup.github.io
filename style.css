@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: #f4f4f4;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+    animation: fadeIn 2s;
+}
+
+h2 {
+    text-align: center;
+}
+
+.InstrumentImg {
+    max-width: 1000;
+    border: 2px solid black;
+    display: block;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.name-box {
+    flex: 1;
+    text-align: center;
+    background: #555;
+    color: white;
+    padding: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    min-width: 100px;
+}
+
+.name-box:hover {
+    background: #777;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.content-section {
+    padding: 1em;
+    background: whitesmoke;
+    margin: 1em auto;
+    max-width: 1500px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.quiz-Container{
+    /* properties for box holding the quiz */
+    background-color: rgb(233, 113, 113);
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    padding: 30px;
+    
+}
+
+.quiz-Container h1{
+    /* title settings */
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+    border-bottom: 1px solid #333;
+    padding-bottom: 30px;
+}
+.quiz{
+    padding: 20px 0;
+}
+.quiz h2{
+    /* settings for the questions text */
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+}
+.btn{
+    /* settings for the options */
+    background: white;
+    color: #222;
+    font-weight: 500;
+    width: 100%;
+    border: 1px solid #222;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* if questions already answered, dont display animations */
+.btn:hover:not([disabled]){ 
+    background : rgb(199, 176, 113);
+    color: #fff;
+}
+/* button to go to next questions */
+#next-btn{
+    /* color settins and box settings for buttons to look better */
+    background: rgb(199, 176, 113); 
+    color: #fff;
+    font-weight: 500;
+    border: 150px;
+    border: 0;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+}
+/* use js to control the color of the buttons */
+.correct{
+    background: rgb(122, 235, 122);
+}
+.incorrect{
+    background: rgb(233, 113, 113); 
+}
