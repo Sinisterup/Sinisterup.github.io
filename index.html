@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
 </head>
-<body style="overflow: auto;">
+<body>
     <header>
-        <h1>All About Band</h1>
+        <div class="hero-image">
+            <img src="images/Bandroom.jpg" alt="Bandroom image">
+            <div class="hero-overlay">
+                <h1>All about Typical Band Instruments</h1>
+            </div>
+        </div>
+        
         <nav>
             <div class="name-box" data-target="content-guitar">
                 <p class="tab-name">Electric Guitar</p>
@@ -19,9 +25,6 @@
             </div>
             <div class="name-box" data-target="content-drum">
                 <p class="tab-name">Drums</p>
-            </div>
-            <div class="name-box" data-target="content-singer">
-                <p class="tab-name">Singer</p>
             </div>
             <div class="name-box" data-target="content-piano">
                 <p class="tab-name">Piano</p>
@@ -34,45 +37,169 @@
 
     <main>
         <section id="content-guitar" class="content-section">
-            <h2>Electric Guitar</h2>
-            <img id="InstrumentImg" src="images/Guitar.jpg" alt="Guitar image">
+            <div>
+                <h1>Guitar</h1>
+            </div>
+            <!-- Electric Guitar Section with Toggle -->
+            <div class="guitar-toggle-section">
+                <button class="guitar-toggle-button" onclick="toggleGuitarInfo('electric')">
+                    Show Electric Guitar Info
+                </button>
+                <div id="electric-info" class="guitar-info hidden">
+                    <h2>Electric Guitar</h2>
+                    <img class="InstrumentImg" src="images/Guitar.jpg" alt="Electric Guitar">
+                    <p>
+                        Electric guitars generate sound through magnetic pickups that convert string vibrations into electrical signals, 
+                        which are then sent to an amplifier. They usually have solid bodies and don't rely on acoustic resonance, which 
+                        makes them quieter on their own but highly expressive when amplified. Electric guitars are widely used in genres 
+                        such as rock, blues, metal, jazz, and funk.
+                    </p>
+                </div>
+            </div>
 
+            <!-- Acoustic Guitar Section with Toggle -->
+            <div class="guitar-toggle-section">
+                <button class="guitar-toggle-button" onclick="toggleGuitarInfo('acoustic')">
+                    Show Acoustic Guitar Info
+                </button>
+                <div id="acoustic-info" class="guitar-info hidden">
+                    <h2>Acoustic Guitar</h2>
+                    <img class="InstrumentImg" src="images/acoustic.jpg" alt="Acoustic Guitar">
+                    <p>
+                        Acoustic guitars are self-contained instruments that produce sound through the natural vibration of strings 
+                        amplified by a hollow wooden body. They require no external equipment, making them convenient and portable 
+                        for casual play, outdoor use, or unplugged performances. Acoustic guitars are commonly used in genres like folk, 
+                        country, pop, and classical music.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Image Comparison Section (keep this as is) -->
+            <div class="simple-comparison">
+                <h1>Compare Guitar Types</h1>
+                <div class="comparison-box">
+                    <img src="images/Guitar.jpg" alt="Electric Guitar" class="left-image">
+                    <img src="images/acoustic.jpg" alt="Acoustic Guitar" class="right-image">
+                    <input type="range" min="0" max="100" value="50" class="simple-slider">
+                </div>
+            </div>
         </section>
 
         <section id="content-bass" class="content-section">
-            <h2>Bass</h2>
+            <div>
+                <div>
+                    <h1>Bass Guitar</h1>
+                    <img class="InstrumentImg" src="images/Bass.jpg" alt="Bass Guitar">
+                </div>
+                <div>
+                    <p>
+                        The bass guitar is a stringed instrument similar in appearance to an electric guitar but with a longer neck and lower pitch, 
+                        typically used to provide rhythm, depth, and harmonic foundation in music across many genres.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h1>Bass Guitar Parts</h1>
+
+                <div class="bimage-container">
+                    <img src="images/bassneck.jpg" alt="bassneck" class="blurred-image">
+                    <div class="hover-text">The Neck: the part that holds the fretboard, frets and headstock.</div>
+                </div>
+
+                <div class="bimage-container">
+                    <img src="images/headstock.jpg" alt="headstock" class="blurred-image">
+                    <div class="hover-text">The Headstock: the part that holds the tuning pegs and anchors the strings.</div>
+                </div>
+
+                <div class="bimage-container">
+                    <img src="images/BBody.jpg" alt="Bassbody" class="blurred-image">
+                    <div class="hover-text">The Body: the part that holds pickups, bridge, and controls.</div>
+                </div>
+
+                <div class="bimage-container">
+                    <img src="images/bridge.jpg" alt="Bassbridge" class="blurred-image">
+                    <div class="hover-text">The Bridge: anchor point for strings and transfers vibrations to the instrument’s body.</div>
+                </div>
+            </div>
         </section>
 
         <section id="content-drum" class="content-section">
-            <h2>Drum</h2>
-        </section>
+            <div>
+                <h1>Drums</h1>
+            </div>
 
-        <section id="content-singer" class="content-section">
-            <h2>Singer</h2>
+            <div class="Dimage-container">
+                <img src="Images/drums.jpg" alt="Drum" id="drum-image">
+
+                <div class="dot" style="top:30%; left:40%;" data-text="first"></div>
+                <div class="dot" style="top:30%; left:60%;" data-text="first"></div>
+                <div class="dot" style="top:60%; left:40%;" data-text="first"></div>
+
+                <div class="box-text" id="text-box"></div>
+            </div>
+            
+            <div>
+                <p>
+                    Drums are percussion instruments played by striking them, often with sticks or hands. Found in many cultures, they provide rhythm and energy in music. 
+                    Modern drum kits include bass drums, snares, toms, and cymbals, and are used in genres like rock, jazz, and pop.
+                </p>
+            </div>
+
+            <div>
+                <audio controls>
+                    <source src="Audio/Drum.wav" type="audio/mpeg">
+                </audio>
+            </div>
         </section>
 
         <section id="content-piano" class="content-section">
-            <h2>Piano</h2>
+            <div>
+                <h1>Types of pianos</h1>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="card active">
+                        <h2>GrandPiano</h2>
+                        <img class="pImage" src="Images/gpiano.jpg" alt="GrandPiano">
+                        <p>Looks very good very grand.</p>
+                    </div>
+                    <div class="card">
+                        <h2>ElectricPiano</h2>
+                        <img class="pImage" src="Images/epiano.jpg" alt="GrandPiano">
+                        <p>Very versitile can change sound etc.</p>
+                    </div>
+                    <div class="card">
+                        <h2>UprightPiano</h2>
+                        <img class="pImage" src="Images/upiano.jpg" alt="GrandPiano">
+                        <p>More compact for home use.</p>
+                    </div>
+                    <div class="card">
+                        <h2>ToyPiano</h2>
+                        <img class="pImage" src="Images/tpiano.jpg" alt="GrandPiano">
+                        <p>For children to play with, nothing serious.</p>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="next">Next</button>
+                    <button class="prev">Prev</button>
+                </div>
+            </div>
         </section>
 
         <section id="content-quiz" class="content-section">
             <h2>Quiz</h2>
 
             <div class = "quiz-Container">
-                <!--the quiz itself-->
                 <div class="quiz">
-                    <!--base questions (will not show)-->
                     <h2 id = "question"> Question goes here</h2>
-                    <!--image for the quiz-->
-                    <img id="question-image" src="images/quiz/quiz1.png" alt="Quiz images">
-                    <!--each button is 1 option for the MCQ-->
                     <div id="answer-buttons">
                         <button class = "btn">Answer 1</button>
                         <button class = "btn">Answer 2</button>
                         <button class = "btn">Answer 3</button>
                         <button class = "btn">Answer 4</button>
                     </div>
-                    <!--NEXT button to go to the next question-->
                     <button id = "next-btn">Next</button>
                 </div>
             </div>
@@ -81,7 +208,7 @@
     </main>
 
     <footer>
-
+        <img id="qrCodeImg" src="images/frame.png">
     </footer>
 </body>
 </html>
