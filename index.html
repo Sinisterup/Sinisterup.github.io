@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
 </head>
+
 <body>
     <header>
+
+        <!-- Picture and overlay words -->
+
         <div class="hero-image">
             <img src="Images/Bandroom.jpg" alt="Bandroom image">
             <div class="hero-overlay">
                 <h1>All about Typical Band Instruments</h1>
+                <button id="fullscreen-btn" class="fullscreen-button">Fullscreen</button>
             </div>
         </div>
+
+        <!-- Navigation buttons -->
         
         <nav>
             <div class="name-box" data-target="content-guitar">
@@ -38,9 +45,11 @@
     <main>
         <section id="content-guitar" class="content-section">
             <div>
-                <h1>Guitar</h1>
+                <h2>Guitar</h2>
             </div>
-            <!-- Electric Guitar Section with Toggle -->
+
+            <!-- First Guitar button content -->
+
             <div class="guitar-toggle-section">
                 <button class="guitar-toggle-button" onclick="toggleGuitarInfo('electric')">
                     Show Electric Guitar Info
@@ -57,7 +66,8 @@
                 </div>
             </div>
 
-            <!-- Acoustic Guitar Section with Toggle -->
+            <!-- Second Guitar button content -->
+
             <div class="guitar-toggle-section">
                 <button class="guitar-toggle-button" onclick="toggleGuitarInfo('acoustic')">
                     Show Acoustic Guitar Info
@@ -74,9 +84,10 @@
                 </div>
             </div>
 
-            <!-- Image Comparison Section (keep this as is) -->
+            <!-- Image comparison -->
+
             <div class="simple-comparison">
-                <h1>Compare Guitar Types</h1>
+                <h2>Compare Guitar Types</h2>
                 <div class="comparison-box">
                     <img src="Images/Guitar.jpg" alt="Electric Guitar" class="left-image">
                     <img src="Images/acoustic.jpg" alt="Acoustic Guitar" class="right-image">
@@ -86,9 +97,12 @@
         </section>
 
         <section id="content-bass" class="content-section">
+
+            <!-- Intro -->
+
             <div>
                 <div>
-                    <h1>Bass Guitar</h1>
+                    <h2>Bass Guitar</h2>
                     <img class="InstrumentImg" src="Images/Bass.jpg" alt="Bass Guitar">
                 </div>
                 <div>
@@ -99,8 +113,10 @@
                 </div>
             </div>
 
+            <!-- Hover cards -->
+
             <div>
-                <h1>Bass Guitar Parts</h1>
+                <h2>Bass Guitar Parts</h2>
 
                 <div class="bimage-container">
                     <img src="Images/bassneck.jpg" alt="bassneck" class="blurred-image">
@@ -126,15 +142,17 @@
 
         <section id="content-drum" class="content-section">
             <div>
-                <h1>Drums</h1>
+                <h2>Drums</h2>
             </div>
+
+            <!-- Image with dot placements -->
 
             <div class="Dimage-container">
                 <img src="Images/drums.jpg" alt="Drum" id="drum-image">
 
-                <div class="dot" style="top:30%; left:40%;" data-text="first"></div>
-                <div class="dot" style="top:30%; left:60%;" data-text="first"></div>
-                <div class="dot" style="top:60%; left:40%;" data-text="first"></div>
+                <div class="dot" style="top:30%; left:40%;" data-text="Hats for high notes"></div>
+                <div class="dot" style="top:30%; left:13%;" data-text="Drums for medium notes"></div>
+                <div class="dot" style="top:60%; left:47%;" data-text="Kickdrums for lowest note"></div>
 
                 <div class="box-text" id="text-box"></div>
             </div>
@@ -146,6 +164,8 @@
                 </p>
             </div>
 
+            <!-- Audio -->
+
             <div>
                 <audio controls>
                     <source src="Audio/Drum.wav" type="audio/mpeg">
@@ -155,10 +175,13 @@
 
         <section id="content-piano" class="content-section">
             <div>
-                <h1>Types of pianos</h1>
+                <h2>Types of pianos</h2>
             </div>
-            <div class="carousel-container">
-                <div class="carousel">
+
+            <!-- Piano cards for cycle -->
+
+            <div class="cycle-container">
+                <div class="cycle">
                     <div class="card active">
                         <h2>GrandPiano</h2>
                         <img class="pImage" src="Images/gpiano.jpg" alt="GrandPiano">
@@ -181,6 +204,8 @@
                     </div>
                 </div>
 
+                <!-- Cycle buttons -->
+
                 <div class="controls">
                     <button class="next">Next</button>
                     <button class="prev">Prev</button>
@@ -189,7 +214,9 @@
         </section>
 
         <section id="content-quiz" class="content-section">
-            <h2>Quiz</h2>
+            <h2>Quiz and mini game</h2>
+
+            <!-- Quiz layout -->
 
             <div class = "quiz-Container">
                 <div class="quiz">
@@ -203,12 +230,45 @@
                     <button id = "next-btn">Next</button>
                 </div>
             </div>
+
+            <!-- Mini game contents -->
+
+            <div class="game-container">
+                <h2>Band Simulator</h2>
+
+                <div class="stage">
+                    <div class="band-member" id="singer">
+                        <div class="avatar">🎤</div>
+                            <button onclick="playInstrument('singer')">Sing</button>
+                        <div class="sound-display"></div>
+                    </div>
+                    <div class="band-member" id="guitarist">
+                        <div class="avatar">🎸</div>
+                            <button onclick="playInstrument('guitarist')">Play Guitar</button>
+                        <div class="sound-display"></div>
+                    </div>
+                    <div class="band-member" id="drummer">
+                        <div class="avatar">🥁</div>
+                            <button onclick="playInstrument('drummer')">Play Drums</button>
+                        <div class="sound-display"></div>
+                    </div>
+
+                    <div class="band-member" id="bassist">
+                        <div class="avatar">🎸</div>
+                            <button onclick="playInstrument('bassist')">Play Bass</button>
+                        <div class="sound-display"></div>
+                    </div>
+                </div>
+
+                <button id="play-all" onclick="playAll()">Play All Together!</button>
+                <div id="crowd-reaction"></div>
+            </div>
         </section>
 
     </main>
 
     <footer>
-        <img id="qrCodeImg" src="Images/frame.png">
+        <img id="qrCodeImg" src="Images/frame.png" alt="qrCode">
     </footer>
 </body>
 </html>

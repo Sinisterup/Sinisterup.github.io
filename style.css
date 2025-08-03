@@ -1,4 +1,8 @@
-/* ===== BASE STYLES ===== */
+/* Base styling */
+html {
+    font-size: 16px;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,7 +13,7 @@ body {
     overflow-y: auto;
 }
 
-h1{
+h2{
     text-align: center;
 }
 
@@ -17,12 +21,13 @@ h1{
     display: none;
 }
 
+    /* Fade in animation */
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== HEADER & NAVIGATION ===== */
 header {
     background: #333;
     color: #fff;
@@ -32,7 +37,7 @@ header {
     animation: fadeIn 2s;
 }
 
-/* Hero section */
+/* Hero overlay image */
 .hero-image {
     width: 100%;
     overflow: hidden;
@@ -63,6 +68,7 @@ header {
     font-size: clamp(1.5rem, 1.875vw, 3rem);
 }
 
+/* Navigation styling */
 nav {
     display: flex;
     justify-content: space-between;
@@ -79,6 +85,7 @@ nav {
     padding: 10px 0;
     border-radius: 5px;
     cursor: pointer;
+    /* Smooth animation */
     transition: background 0.3s;
     min-width: 100px;
 }
@@ -87,7 +94,7 @@ nav {
     background: #777;
 }
 
-/* ===== MAIN CONTENT SECTIONS ===== */
+/* General content styling */
 .content-section {
     padding: 1em;
     background: whitesmoke;
@@ -111,7 +118,7 @@ h2 {
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Image Comparison Styles */
+/* Comaparison styling */
 .comparison-box {
     position: relative;
     width: 100%;
@@ -120,7 +127,7 @@ h2 {
     overflow: hidden;
     border: 2px solid #333;
     border-radius: 8px;
-    height: 300px; /* Add fixed height */
+    height: 300px;
 }
 
 .left-image {
@@ -133,7 +140,7 @@ h2 {
 }
 
 .right-image {
-    width: 50%; /* Start at 50% */
+    width: 50%;
     height: 100%;
     object-fit: cover;
     position: absolute;
@@ -148,7 +155,6 @@ h2 {
     width: 100%;
     height: 100%;
     margin: 0;
-    -webkit-appearance: none;
     appearance: none;
     background: transparent;
     outline: none;
@@ -156,9 +162,7 @@ h2 {
     cursor: ew-resize;
 }
 
-/* Slider handle styles */
 .simple-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
     appearance: none;
     width: 8px;
     height: 100%;
@@ -167,27 +171,11 @@ h2 {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-/* Simple  Styles */
-/* .simple-button {
-    background: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.simple-button:hover {
-    background: #45a049;
-} */
-
 .hidden {
     display: none;
 }
 
-/* Guitar Toggle Sections */
+/* Guitar Section */
 .guitar-toggle-section {
     margin-bottom: 30px;
 }
@@ -221,7 +209,7 @@ h2 {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* ===== BLURRED PHOTOTS ===== */
+/* Blur photos */
 .bimage-container{
     position: relative;
     display: inline-block;
@@ -258,7 +246,7 @@ h2 {
     opacity: 1;
 }
 
-/* ===== DRUM IMAGE ===== */
+/* Drum image with dot */
 
 .Dimage-container{
     position: relative;
@@ -299,6 +287,7 @@ h2 {
     word-wrap: break-word;
 }
 
+/* Create arrow */
 .box-text::after {
     content:'';
     position:absolute;
@@ -307,6 +296,7 @@ h2 {
     border: 10px solid transparent;
 }
 
+/* Positions arrow based on text box position */
 .box-text.right{
     left: 30px;
     top: 50%;
@@ -333,8 +323,8 @@ h2 {
     transform: translateY(-50%);
 }
 
-/* ===== PIANO CARDS ===== */
-.carousel-container {
+/* Piano card cycle */
+.cycle-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -347,12 +337,12 @@ h2 {
     overflow: hidden;
 }
 
-.carousel {
+.cycle {
     display: flex;
     width: 100%;
     transition: transform 0.5s ease;
     position: relative;
-    height: 500px; /* Fixed height for consistency */
+    height: 500px;
 }
 
 .card {
@@ -385,6 +375,8 @@ h2 {
     z-index: 1;
 }
 
+/* Cycle controller */
+
 .controls{
     margin-top: 20px;
     display: flex;
@@ -410,7 +402,7 @@ button:hover {
     width: 35%;
 }
 
-/* ===== QUIZ SECTION ===== */
+/* Quiz */
 .quiz-Container {
     background: linear-gradient(135deg, white 0%, red 100%);
     border-radius: 15px;
@@ -477,7 +469,102 @@ button:hover {
     background: rgb(233, 113, 113); 
 }
 
-/* ===== FOOTER ===== */
+/* Mini Game */
+.game-container {
+    margin:auto;
+    margin-top: 10px;
+    background-color:white;
+    border-radius: 10px;
+    padding:20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align:center;
+    max-width: 600px;
+}
+
+.stage {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+    margin-bottom: 20px;
+    background-color:#333;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.band-member {
+    background-color:#444;
+    color:white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 120px;
+}
+
+.avatar {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+#play-all {
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+#play-all:hover {
+    background-color: #45a049;
+}
+
+.sound-display {
+    height: 20px;
+    margin-top: 10px;
+    background-color: #555;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.sound-animation {
+    background-color: #ff4500;
+    height: 100%;
+    width: 0%;
+    animation: soundWave 0.5s linear;
+}
+
+/* Slider animation to be called */
+@keyframes soundWave {
+    0% { width: 0%; }
+    50% { width: 100%; }
+    100% { width: 0%; }
+}
+
+#crowd-reaction {
+    margin-top: 20px;
+    font-size: 24px;
+    height: 30px;
+}
+
+/* Fullscreen buttons */
+.fullscreen-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    /* Show clickable */
+    cursor: pointer; 
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.fullscreen-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Footer */
 footer {
     background: #333;
     color: #fff;
@@ -502,11 +589,12 @@ footer {
     max-width: 100px;
 }
 
-/* ===== MEDIA QUERIES ===== */
+/* Responsive styling */
 @media (max-width: 800px) {
     nav {
         flex-direction: column;
         gap: 5px;
+        font-size: 14px;
     }
     
     .name-box {
@@ -526,10 +614,11 @@ footer {
     }
     
     h1 {
-        background: lightgreen;
+        background: rgb(138, 130, 25);
     }
-    
-    h1::after {
-        content: "(mobile)";
+}
+@media (min-width: 801px) {
+    .fullscreen-button {
+        display: block;
     }
 }
