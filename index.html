@@ -3,272 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starter HTML JS CSS</title>
+    <title>Resume | Tan Shang Ren</title>
     <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer></script>
 </head>
 
 <body>
-    <header>
 
-        <!-- Picture and overlay words -->
-
-        <div class="hero-image">
-            <img src="Images/Bandroom.jpg" alt="Bandroom image">
-            <div class="hero-overlay">
-                <h1>All about Typical Band Instruments</h1>
-                <button id="fullscreen-btn" class="fullscreen-button">Fullscreen</button>
-            </div>
+    <nav>
+        <h1>Tan Shang Ren</h1>
+        <div class="nav-links">
+            <a href="#home" class="nav-link" data-target="home">Home</a>
+            <a href="#portfolio" class="nav-link" data-target="portfolio">Portfolio</a>
+            <a href="#resume" class="nav-link" data-target="resume">My Info</a>
+            <button id="theme-toggle" class="theme-btn">Dark Mode</button>
         </div>
-
-        <!-- Navigation buttons -->
-        
-        <nav>
-            <div class="name-box" data-target="content-guitar">
-                <p class="tab-name">Electric Guitar</p>
-            </div>
-            <div class="name-box" data-target="content-bass">
-                <p class="tab-name">Bass Guitar</p>
-            </div>
-            <div class="name-box" data-target="content-drum">
-                <p class="tab-name">Drums</p>
-            </div>
-            <div class="name-box" data-target="content-piano">
-                <p class="tab-name">Piano</p>
-            </div>
-            <div class="name-box" data-target="content-quiz">
-                <p class="tab-name">Quiz</p>
-            </div>
-        </nav>
-    </header>
+    </nav>
 
     <main>
-        <section id="content-guitar" class="content-section">
-            <div>
-                <h2>Guitar</h2>
+        
+        <section id="home" class="page-module active">
+            <div class="about-container">
+                <div class="home-text">
+                    <h2 class="hero-title">Hi, I'm Shang Ren</h2>
+                    <h3 class="hero-subtitle">Gameplay Programmer & Unity Developer</h3>
+                    <p>An aspiring Game Developer currently in my final year at Nanyang Polytechnic studying Game Development and Technology.</p>
+                    <p>I have a strong foundation in Unity and OpenGL, with a proven ability to collaborate and deliver playable prototypes under tight deadlines through school projects and game jam experience.</p>
+                    
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn-primary nav-link" data-target="portfolio">Past projects</a>
+                        <a href="#resume" class="btn-secondary nav-link" data-target="resume">My skillsets</a>
+                    </div>
+                </div>
+                <img src="profile.jpg" alt="Tan Shang Ren" class="profile-pic">
             </div>
 
-            <!-- First Guitar button content -->
-
-            <div class="guitar-toggle-section">
-                <button class="guitar-toggle-button" onclick="toggleGuitarInfo('electric')">
-                    Show Electric Guitar Info
-                </button>
-                <div id="electric-info" class="guitar-info hidden">
-                    <h2>Electric Guitar</h2>
-                    <img class="InstrumentImg" src="Images/Guitar.jpg" alt="Electric Guitar">
-                    <p>
-                        Electric guitars generate sound through magnetic pickups that convert string vibrations into electrical signals, 
-                        which are then sent to an amplifier. They usually have solid bodies and don't rely on acoustic resonance, which 
-                        makes them quieter on their own but highly expressive when amplified. Electric guitars are widely used in genres 
-                        such as rock, blues, metal, jazz, and funk.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Second Guitar button content -->
-
-            <div class="guitar-toggle-section">
-                <button class="guitar-toggle-button" onclick="toggleGuitarInfo('acoustic')">
-                    Show Acoustic Guitar Info
-                </button>
-                <div id="acoustic-info" class="guitar-info hidden">
-                    <h2>Acoustic Guitar</h2>
-                    <img class="InstrumentImg" src="Images/acoustic.jpg" alt="Acoustic Guitar">
-                    <p>
-                        Acoustic guitars are self-contained instruments that produce sound through the natural vibration of strings 
-                        amplified by a hollow wooden body. They require no external equipment, making them convenient and portable 
-                        for casual play, outdoor use, or unplugged performances. Acoustic guitars are commonly used in genres like folk, 
-                        country, pop, and classical music.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Image comparison -->
-
-            <div class="simple-comparison">
-                <h2>Compare Guitar Types</h2>
-                <div class="comparison-box">
-                    <img src="Images/Guitar.jpg" alt="Electric Guitar" class="left-image">
-                    <img src="Images/acoustic.jpg" alt="Acoustic Guitar" class="right-image">
-                    <input type="range" min="0" max="100" value="50" class="simple-slider">
-                </div>
+            <div class="quick-highlights">
+                <div class="highlight-item">Junior Game Developer</div>
+                <div class="highlight-item">2D/3D/VR/Website</div>
+                <div class="highlight-item">NYP Final Year Student</div>
             </div>
         </section>
 
-        <section id="content-bass" class="content-section">
+        <section id="portfolio" class="page-module">
+            <h2>My Projects</h2>
 
-            <!-- Intro -->
-
-            <div>
-                <div>
-                    <h2>Bass Guitar</h2>
-                    <img class="InstrumentImg" src="Images/Bass.jpg" alt="Bass Guitar">
+            <div class="portfolio-grid">
+                <div class="project-card modern-frame">
+                    <div class="media-wrapper">
+                        <video width="100%" controls>
+                            <source src="my-project-video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="project-info">
+                        <h3>
+                            Skypiea
+                        </h3>
+                        <div class="project-tags">
+                            <span>Unity</span><span>C#</span><span>3D</span><span>10 days</span>
+                        </div>
+                        <p>
+                            A prototype action platformer centered on momentum-based movement like grappling and wall-running. 
+                            Its core codable gameplay relies on a strict two-weapon inventory (swords, bows, guns), 
+                            deployable single-use ability cards , and a three-element damage system (Fire, Ice, Electricity). 
+                            Progression is driven by randomized chest loot, infinitely refreshable shops, checkpoint-based respawning, 
+                            and combat against AI minions and a two-phase boss. (I created player, grappler, 
+                            Boss phase 1, card system, checkpoint system, item spawners)</p>
+                    </div>
                 </div>
-                <div>
-                    <p>
-                        The bass guitar is a stringed instrument similar in appearance to an electric guitar but with a longer neck and lower pitch, 
-                        typically used to provide rhythm, depth, and harmonic foundation in music across many genres.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Hover cards -->
-
-            <div>
-                <h2>Bass Guitar Parts</h2>
-
-                <div class="bimage-container">
-                    <img src="Images/bassneck.jpg" alt="bassneck" class="blurred-image">
-                    <div class="hover-text">The Neck: the part that holds the fretboard, frets and headstock.</div>
-                </div>
-
-                <div class="bimage-container">
-                    <img src="Images/headstock.jpg" alt="headstock" class="blurred-image">
-                    <div class="hover-text">The Headstock: the part that holds the tuning pegs and anchors the strings.</div>
-                </div>
-
-                <div class="bimage-container">
-                    <img src="Images/BBody.jpg" alt="Bassbody" class="blurred-image">
-                    <div class="hover-text">The Body: the part that holds pickups, bridge, and controls.</div>
-                </div>
-
-                <div class="bimage-container">
-                    <img src="Images/bridge.jpg" alt="Bassbridge" class="blurred-image">
-                    <div class="hover-text">The Bridge: anchor point for strings and transfers vibrations to the instrument’s body.</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="content-drum" class="content-section">
-            <div>
-                <h2>Drums</h2>
-            </div>
-
-            <!-- Image with dot placements -->
-
-            <div class="Dimage-container">
-                <img src="Images/drums.jpg" alt="Drum" id="drum-image">
-
-                <div class="dot" style="top:30%; left:40%;" data-text="Hats for high notes"></div>
-                <div class="dot" style="top:30%; left:13%;" data-text="Drums for medium notes"></div>
-                <div class="dot" style="top:60%; left:47%;" data-text="Kickdrums for lowest note"></div>
-
-                <div class="box-text" id="text-box"></div>
-            </div>
             
-            <div>
-                <p>
-                    Drums are percussion instruments played by striking them, often with sticks or hands. Found in many cultures, they provide rhythm and energy in music. 
-                    Modern drum kits include bass drums, snares, toms, and cymbals, and are used in genres like rock, jazz, and pop.
-                </p>
-            </div>
+                <div class="project-card modern-frame">
+                    <div class="media-wrapper">
+                        <img src="project-placeholder.jpg" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Codeway Runners</h3>
+                        <div class="project-tags">
+                            <span>Android studio</span><span>Java</span>
+                        </div>
+                        <p>
+                            A prototype mobile game freaturing an endless runner mobile game that incorporates roguelike elements 
+                            into its swipe-based gameplay. Players navigate three lanes by swiping left, right, up, and down to 
+                            avoid procedurally generated barriers. The core loop involves collecting randomly spawned coins and power-ups, 
+                            such as magnets, while progressing through the run. A defining feature is the roguelike progression system, 
+                            where upon reaching certain score milestones, players choose between two randomized upgrades, such as increased 
+                            movement speed or extended magnet duration. The game also includes quick-time events that players must complete 
+                            to continue their run, and features achievement tracking and a post-game leaderboard. (I created the power-up 
+                            system and its power-ups, collectibles, roguelike upgrades, quick timed events, player accounts based on usernames, 
+                            moving background)
+                        </p>
+                    </div>
+                </div>
 
-            <!-- Audio -->
+                <div class="project-card modern-frame">
+                    <div class="media-wrapper">
+                        <img src="project-placeholder.jpg" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Unity Shaders</h3>
+                        <div class="project-tags">
+                            <span>Unity</span><span>HLSL</span><span>3D</span>
+                        </div>
+                        <p>
+                            A small project where i tried coding out my own shaders in Unity HLSL. For this project I wrote basic vertex and 
+                            fragment shaders. The project includes different colours, textures with alpha, forward rendering pipline supporting 
+                            multiple directional, point and spot lights with Blinn-Phong shading, Tangent-space normal mapping, multiple shadows 
+                            with 3x3 Percentage-Closer Filtering Reflection and water made with vertex-based wave displacement, dual scrolling 
+                            normal map for complex ripples, and Fresnel-based color blending to simulate variable depth and reflections. 
+                        </p>
+                    </div>
+                </div>
 
-            <div>
-                <audio controls>
-                    <source src="Audio/Drum.wav" type="audio/mpeg">
-                </audio>
+                <div class="project-card modern-frame">
+                    <div class="media-wrapper">
+                        <img src="project-placeholder.jpg" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Unity 3D FPS</h3>
+                        <div class="project-tags">
+                            <span>Unity</span><span>C#</span><span>3D</span>
+                        </div>
+                        <p>
+                            A small project where i tried coding out first person shooter mechanics. Mechanics include basic player movement 
+                            (walk, run, jump, wall-run, slide), gun system, raycast gun, physics gun, homing missile
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card modern-frame">
+                    <div class="media-wrapper">
+                        <img src="project-placeholder.jpg" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-info">
+                        <h3>Unity 3D third person</h3>
+                        <div class="project-tags">
+                            <span>Unity</span><span>C#</span><span>3D</span>
+                        </div>
+                        <p>
+                            A small project where i tried coding out third person fighting mechanics. Mechanics include basic player movement 
+                            (walk, run, jump, crouch, stairs movement), combat system featuring weapons such as swords (chain combo system, 
+                            blocking, special attack, basic attack, heavy attack, parry), object inspection, cctv camera, glitch shaders, snow 
+                            shaders, glitch shaders, sonar shaders
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card modern-frame">
+                    <div class="media-wrapper">
+                        <img src="project-placeholder.jpg" alt="Project Beta" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-info">
+                        <h3>2D AI simulation</h3>
+                        <div class="project-tags">
+                            <span>OpenGL</span><span>C++</span>
+                        </div>
+                        <p>
+                            A small project where i tried coding out a turn-based simulation game with fog of war mechanics, entities with their 
+                            own unique finite state machines. The core of the simulation is based on an action point system that governs every entities' 
+                            movement and combat per turn, this is supported by an economy where miner entities have to mine materials to spawn 
+                            different entities. The units are driven using A* star and Depth first search pathfinding and they have to navigate a 
+                            randomly generated tile-based map where in-game events can happen to change tiles to other tiles costing different amounts 
+                            of ap for entities to move to.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="content-piano" class="content-section">
-            <div>
-                <h2>Types of pianos</h2>
-            </div>
+        <section id="resume" class="page-module">
+            <h2>About Me</h2>
+            
+            <div class="resume-grid">
+                <div>
+                    <h3>Programming Languages</h3>
+                    <div class="skill-group">
+                        <div class="skill-item"><span class="skill-name">C#</span> <span class="proficiency high">Advanced</span></div>
+                        <div class="skill-item"><span class="skill-name">C++</span> <span class="proficiency med">Proficient</span></div>
+                        <div class="skill-item"><span class="skill-name">Java</span> <span class="proficiency med">Intermediate</span></div>
+                        <div class="skill-item"><span class="skill-name">Python</span> <span class="proficiency med">Intermediate</span></div>
+                        <div class="skill-item"><span class="skill-name">HTML / CSS / JS</span> <span class="proficiency med">Intermediate</span></div>
+                    </div>
 
-            <!-- Piano cards for cycle -->
-
-            <div class="cycle-container">
-                <div class="cycle">
-                    <div class="card active">
-                        <h2>GrandPiano</h2>
-                        <img class="pImage" src="Images/gpiano.jpg" alt="GrandPiano">
-                        <p>Looks very good very grand.</p>
-                    </div>
-                    <div class="card">
-                        <h2>ElectricPiano</h2>
-                        <img class="pImage" src="Images/epiano.jpg" alt="GrandPiano">
-                        <p>Very versitile can change sound etc.</p>
-                    </div>
-                    <div class="card">
-                        <h2>UprightPiano</h2>
-                        <img class="pImage" src="Images/upiano.jpg" alt="GrandPiano">
-                        <p>More compact for home use.</p>
-                    </div>
-                    <div class="card">
-                        <h2>ToyPiano</h2>
-                        <img class="pImage" src="Images/tpiano.jpg" alt="GrandPiano">
-                        <p>For children to play with, nothing serious.</p>
+                    <h3 style="margin-top: 2rem;">Software & Engines</h3>
+                    <div class="skill-group">
+                        <div class="skill-item"><span class="skill-name">Unity</span> <span class="proficiency high">Advanced</span></div>
+                        <div class="skill-item"><span class="skill-name">OpenGL</span> <span class="proficiency med">Proficient</span></div>
+                        <div class="skill-item"><span class="skill-name">Android Studio</span> <span class="proficiency med">Intermediate</span></div>
+                        <div class="skill-item"><span class="skill-name">Unreal Engine</span> <span class="proficiency low">Familiar</span></div>
                     </div>
                 </div>
-
-                <!-- Cycle buttons -->
-
-                <div class="controls">
-                    <button class="next">Next</button>
-                    <button class="prev">Prev</button>
+                
+                <div>
+                    <h3>Education</h3>
+                    <p><strong>Nanyang Polytechnic</strong><br>Game Development and Technology (2024 - 2027) [in progress]</p>
+                    
+                    <h3>Contact</h3>
+                    <p>Email: <a href="mailto:tanshangren07@gmail.com" style="color: var(--accent-color);">tanshangren07@gmail.com</a></p>
+                    <p>LinkedIn: <a href="https://www.linkedin.com/in/tan-shang-ren-85a21b3a5/" target="_blank" style="color: var(--accent-color);">Tan Shang Ren</a><br>
+                    <small><i>[More info including things outside game development]</i></small></p>
                 </div>
-            </div>
-        </section>
-
-        <section id="content-quiz" class="content-section">
-            <h2>Quiz and mini game</h2>
-
-            <!-- Quiz layout -->
-
-            <div class = "quiz-Container">
-                <div class="quiz">
-                    <h2 id = "question"> Question goes here</h2>
-                    <div id="answer-buttons">
-                        <button class = "btn">Answer 1</button>
-                        <button class = "btn">Answer 2</button>
-                        <button class = "btn">Answer 3</button>
-                        <button class = "btn">Answer 4</button>
-                    </div>
-                    <button id = "next-btn">Next</button>
-                </div>
-            </div>
-
-            <!-- Mini game contents -->
-
-            <div class="game-container">
-                <h2>Band Simulator</h2>
-
-                <div class="stage">
-                    <div class="band-member" id="singer">
-                        <div class="avatar">🎤</div>
-                            <button onclick="playInstrument('singer')">Sing</button>
-                        <div class="sound-display"></div>
-                    </div>
-                    <div class="band-member" id="guitarist">
-                        <div class="avatar">🎸</div>
-                            <button onclick="playInstrument('guitarist')">Play Guitar</button>
-                        <div class="sound-display"></div>
-                    </div>
-                    <div class="band-member" id="drummer">
-                        <div class="avatar">🥁</div>
-                            <button onclick="playInstrument('drummer')">Play Drums</button>
-                        <div class="sound-display"></div>
-                    </div>
-
-                    <div class="band-member" id="bassist">
-                        <div class="avatar">🎸</div>
-                            <button onclick="playInstrument('bassist')">Play Bass</button>
-                        <div class="sound-display"></div>
-                    </div>
-                </div>
-
-                <button id="play-all" onclick="playAll()">Play All Together!</button>
-                <div id="crowd-reaction"></div>
             </div>
         </section>
 
     </main>
 
-    <footer>
-        <img id="qrCodeImg" src="Images/frame.png" alt="qrCode">
-    </footer>
+    <script src="main.js"></script>
 </body>
 </html>

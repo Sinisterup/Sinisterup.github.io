@@ -1,624 +1,370 @@
-/* Base styling */
-html {
-    font-size: 16px;
+/* --- CSS VARIABLES --- */
+
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --nav-bg: #222;
+    --main-bg: #fff;
+    --card-bg: #fafafa;
+    --border-color: #ddd;
+    --accent-color: #0056b3; /* A strong blue for light mode */
 }
 
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --nav-bg: #000;
+    --main-bg: #1e1e1e;
+    --card-bg: #2d2d2d;
+    --border-color: #444;
+    --accent-color: #00ffcc; /* A neon cyan for dark mode */
+}
+
+/* --- GENERAL STYLING --- */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background: #f4f4f4;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-h2{
-    text-align: center;
-}
-
-.hidden {
-    display: none;
-}
-
-    /* Fade in animation */
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-header {
-    background: #333;
-    color: #fff;
+    margin: 0;
     padding: 0;
-    margin: 0;
-    text-align: center;
-    animation: fadeIn 2s;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* Smooth transition when swapping themes */
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
-/* Hero overlay image */
-.hero-image {
-    width: 100%;
-    overflow: hidden;
-    margin: 0;
-    position: relative;
-    aspect-ratio: 16/8;
-}
-
-.hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.5;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    font-size: clamp(1.5rem, 1.875vw, 3rem);
-}
-
-/* Navigation styling */
+/* --- NAVIGATION --- */
 nav {
     display: flex;
     justify-content: space-between;
-    padding: 1em;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.name-box {
-    flex: 1;
-    text-align: center;
-    background: #555;
-    color: white;
-    padding: 10px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    /* Smooth animation */
-    transition: background 0.3s;
-    min-width: 100px;
-}
-
-.name-box:hover {
-    background: #777;
-}
-
-/* General content styling */
-.content-section {
-    padding: 1em;
-    background: whitesmoke;
-    margin: 1em auto;
-    max-width: 1500px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    animation: fadeIn 1s ease-in;
-    transform-origin: top;
-}
-
-h2 {
-    text-align: center;
-}
-
-.InstrumentImg {
-    display: block;
-    margin: 15px auto;
-    width: 70%;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-/* Comaparison styling */
-.comparison-box {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    overflow: hidden;
-    border: 2px solid #333;
-    border-radius: 8px;
-    height: 300px;
-}
-
-.left-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.right-image {
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.simple-slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    appearance: none;
-    background: transparent;
-    outline: none;
-    z-index: 10;
-    cursor: ew-resize;
-}
-
-.simple-slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 8px;
-    height: 100%;
-    background: white;
-    cursor: ew-resize;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.hidden {
-    display: none;
-}
-
-/* Guitar Section */
-.guitar-toggle-section {
-    margin-bottom: 30px;
-}
-
-.guitar-toggle-button {
-    background: rgb(199, 176, 113);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    transition: background 0.3s;
-}
-
-.guitar-toggle-button:hover {
-    background: rgb(180, 160, 100);
-}
-
-.guitar-info {
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    margin-top: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-/* Blur photos */
-.bimage-container{
-    position: relative;
-    display: inline-block;
-    padding: 35px;
-}
-
-.blurred-image{
-    display:block;
-    width: 300px;
-    height:auto;
-    filter: blur(0);
-    transition: filter 0.3s ease;
-    aspect-ratio: 1/1;
-}
-
-.hover-text{
-    position:absolute;
-    color:black;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 21px;
-    font-weight: bold;
-    text-align:center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.bimage-container:hover .blurred-image{
-    filter:blur(7px);
-}
-
-.bimage-container:hover .hover-text{
-    opacity: 1;
-}
-
-/* Drum image with dot */
-
-.Dimage-container{
-    position: relative;
-    display: inline-block;
-}
-
-#drum-image{
-    max-width: 100%;
-    height:auto;
-    display:block;
-}
-
-.dot{
-    position:absolute;
-    width: 20px;
-    height: 20px;
-    background-color:red;
-    border-radius: 50%;
-    cursor:pointer;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s ease;
-}
-.dot:hover {
-    transform: translate(-50%, -50%) scale(1.2);
-    background-color:#ff4444;
-}
-
-.box-text {
-    position:absolute;
-    background-color:white;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    max-width: 200px;
-    display:none;
-    z-index: 10;
-    max-width: min(200px, 30vw);
-    word-wrap: break-word;
-}
-
-/* Create arrow */
-.box-text::after {
-    content:'';
-    position:absolute;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-}
-
-/* Positions arrow based on text box position */
-.box-text.right{
-    left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.box-text.right::after{
-    right: 100%;
-    top: 50%;
-    border-right-color:white;
-    transform: translateY(-50%);
-}
-
-.box-text.left{
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.box-text.left::after{
-    left: 100%;
-    top: 50%;
-    border-left-color:white;
-    transform: translateY(-50%);
-}
-
-/* Piano card cycle */
-.cycle-container {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 0;
-    position: relative;
-    overflow: hidden;
+    background: var(--nav-bg);
+    color: #fff;
+    padding: 1rem 2rem;
+    transition: background-color 0.3s ease;
 }
 
-.cycle {
-    display: flex;
-    width: 100%;
-    transition: transform 0.5s ease;
-    position: relative;
-    height: 500px;
+nav h1 { margin: 0; font-size: 1.5rem; }
+
+/* Updated for Semantic Anchor Links */
+nav .nav-link {
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
 }
 
-.card {
-    min-width: 95%;
-    padding: 20px;
-    background: white;
+nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+    border-radius: 5px;
+    transform: translateX(5px);
+    box-shadow: -3px 0 0 var(--accent-color);
+    text-shadow: 0 0 8px var(--accent-color);
+}
+
+.theme-btn {
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* --- CONTENT CONTAINER --- */
+main {
+    max-width: 1100px; /* Increased from 900px */
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--main-bg);
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    transition: all 0.5s ease;
-    opacity: 0;
-    transform: translateX(100%);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
 }
 
-.card.active {
-    opacity: 1;
-    transform: translateX(0);
-    z-index: 2;
+/* --- THE MODULAR MAGIC --- */
+.page-module {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-.card.prev-card {
-    transform: translateX(-100%);
-    opacity: 0.5;
-    z-index: 1;
+.page-module.active {
+    display: block;
 }
 
-.card.next-card {
-    transform: translateX(100%);
-    opacity: 0.5;
-    z-index: 1;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Cycle controller */
-
-.controls{
-    margin-top: 20px;
+/* --- HOME & ABOUT SECTION --- */
+.home-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
-button {
-    padding: 8px 16px;
-    background: green;
-    color:white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.home-header h2 {
+    margin: 0;
 }
 
-button:hover {
-    background: greenyellow;
-}
-
-.pImage{
-    display: block;
-    margin: auto;
-    width: 35%;
-}
-
-/* Quiz */
-.quiz-Container {
-    background: linear-gradient(135deg, white 0%, red 100%);
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    padding: 30px;
-    width: 90%;
-    margin: 100px auto 0;
-}
-
-.quiz-Container h1 {
-    font-size: 25px;
-    font-weight: 600;
-    color: black;
-    border-bottom: 1px solid #333;
-    padding-bottom: 30px;
-}
-
-.quiz {
-    padding: 20px 0;
-}
-
-.quiz h2 {
-    font-size: 18px;
-    color: black;
-    font-weight: 600;
-}
-
-.btn {
-    background: white;
-    color: #222;
-    font-weight: 500;
-    width: 100%;
-    border: 1px solid #222;
-    padding: 10px;
-    margin: 10px 0;
-    text-align: left;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.btn:hover:not([disabled]) { 
-    background: rgb(199, 176, 113);
-    color: #fff;
-}
-
-#next-btn {
-    background: rgb(199, 176, 113); 
-    color: #fff;
-    font-weight: 500;
-    border: 150px;
-    border: 0;
-    padding: 10px;
-    margin: 20px auto 0;
-    border-radius: 4px;
-    cursor: pointer;
-    display: none;
-}
-
-.correct {
-    background: rgb(122, 235, 122);
-}
-
-.incorrect {
-    background: rgb(233, 113, 113); 
-}
-
-/* Mini Game */
-.game-container {
-    margin:auto;
-    margin-top: 10px;
-    background-color:white;
-    border-radius: 10px;
-    padding:20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align:center;
-    max-width: 600px;
-}
-
-.stage {
+.about-container {
     display: flex;
-    justify-content: space-around;
-    flex-wrap:wrap;
-    margin-bottom: 20px;
-    background-color:#333;
-    padding: 20px;
-    border-radius: 5px;
+    align-items: center;
+    gap: 2rem;
 }
 
-.band-member {
-    background-color:#444;
-    color:white;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 5px;
-    width: 120px;
+.about-container p {
+    flex: 1;
 }
 
-.avatar {
-    font-size: 40px;
-    margin-bottom: 10px;
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; 
+    border-radius: 50%; 
+    border: 3px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
 }
 
-#play-all {
-    background-color: #4CAF50;
-    padding: 10px 20px;
-    font-size: 16px;
+.profile-pic:hover {
+    transform: scale(1.05);
 }
 
-#play-all:hover {
-    background-color: #45a049;
+/* --- RESUME & SKILLS GRID --- */
+.resume-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
 }
 
-.sound-display {
-    height: 20px;
-    margin-top: 10px;
-    background-color: #555;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.sound-animation {
-    background-color: #ff4500;
-    height: 100%;
-    width: 0%;
-    animation: soundWave 0.5s linear;
-}
-
-/* Slider animation to be called */
-@keyframes soundWave {
-    0% { width: 0%; }
-    50% { width: 100%; }
-    100% { width: 0%; }
-}
-
-#crowd-reaction {
-    margin-top: 20px;
-    font-size: 24px;
-    height: 30px;
-}
-
-/* Fullscreen buttons */
-.fullscreen-button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    border: 1px solid white;
-    border-radius: 4px;
-    /* Show clickable */
-    cursor: pointer; 
-    font-size: 14px;
-    transition: all 0.3s ease;
-    display: none;
-}
-
-.fullscreen-button:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-/* Footer */
-footer {
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1em 0;
-}
-
-.qr-container {
+/* New Skill List Layout */
+.skill-group {
     display: flex;
     flex-direction: column;
+    gap: 0.8rem;
+}
+
+.skill-item {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    padding: 1em;
+    background: var(--card-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border-left: 3px solid var(--accent-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.qr-container p {
-    color: white;
-    font-size: 0.9em;
+.skill-name {
+    font-weight: bold;
+    font-size: 0.95rem;
 }
 
-#qrCodeImg {
-    max-width: 100px;
+/* Proficiency Text Tags */
+.proficiency {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    background: var(--border-color);
+    color: var(--text-color);
 }
 
-/* Responsive styling */
-@media (max-width: 800px) {
+/* Color coded proficiency tags */
+.proficiency.high { background: rgba(0, 255, 204, 0.2); border: 1px solid var(--accent-color); }
+.proficiency.med { opacity: 0.8; }
+.proficiency.low { opacity: 0.6; }
+
+/* --- PORTFOLIO GRID --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Modern Project Frame */
+.modern-frame {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    padding: 0; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.modern-frame:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+    border-color: var(--accent-color); 
+}
+
+.media-wrapper {
+    background: #000;
+    aspect-ratio: 16 / 9; 
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.media-wrapper video, .media-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 1.5rem;
+    flex-grow: 1; 
+}
+
+.project-info h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.project-tags span {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(128, 128, 128, 0.1);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* --- HERO SECTION ENHANCEMENTS --- */
+.hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.2rem;
+    color: var(--accent-color);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Button Styles */
+.btn-primary, .btn-secondary {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--main-bg); /* Automatically swaps: White in Light Mode, Dark in Dark Mode */
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+}
+
+/* Add a little hover lift to the buttons */
+.btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn-primary:hover {
+    color: var(--main-bg) !important; 
+}
+
+/* Highlights Bar */
+.quick-highlights {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.highlight-item {
+    background: var(--card-bg);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    flex: 1;
+    text-align: center;
+    min-width: 200px;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    
     nav {
         flex-direction: column;
-        gap: 5px;
-        font-size: 14px;
+        gap: 1rem;
     }
     
-    .name-box {
-        width: 100%;
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
     }
     
-    #InstrumentImg {
-        width: 95%;
-    }
-    
-    .content-section {
-        padding: 0.5em;
-    }
-
-    #qrCodeImg {
-        display: none;
-    }
-    
-    h1 {
-        background: rgb(138, 130, 25);
-    }
-}
-@media (min-width: 801px) {
-    .fullscreen-button {
-        display: block;
+    nav .nav-link, .theme-btn {
+        margin-left: 0;
     }
 }
