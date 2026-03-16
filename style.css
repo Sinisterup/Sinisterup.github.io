@@ -86,7 +86,7 @@ nav .nav-link:hover {
 
 /* --- CONTENT CONTAINER --- */
 main {
-    max-width: 1100px; /* Increased from 900px */
+    max-width: 1400px;
     margin: 2rem auto;
     padding: 2rem;
     background: var(--main-bg);
@@ -196,7 +196,7 @@ main {
 /* --- PORTFOLIO GRID --- */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 1.5rem;
 }
@@ -347,6 +347,10 @@ main {
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Stacks projects vertically on phones */
+    }
+
     .about-container {
         flex-direction: column-reverse;
         text-align: center;
