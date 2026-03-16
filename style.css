@@ -236,9 +236,10 @@ main {
     border-bottom: 1px solid var(--border-color);
 }
 
-.media-wrapper video, .media-wrapper img {
+.media-wrapper video, .media-wrapper img, .media-wrapper iframe {
     width: 100%;
     height: 100%;
+    border: none;
     object-fit: cover;
 }
 
