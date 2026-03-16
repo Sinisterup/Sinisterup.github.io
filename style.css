@@ -348,7 +348,7 @@ main {
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
     .portfolio-grid {
-        grid-template-columns: 1fr; /* Stacks projects vertically on phones */
+        grid-template-columns: 1fr;
     }
 
     .about-container {
