@@ -1,10 +1,22 @@
 /* =============================================
+   SWEEP LINE
+   ============================================= */
+function triggerSweep() {
+    const line = document.getElementById('sweep-line');
+    line.classList.remove('sweeping');
+    void line.offsetWidth; // force reflow so animation restarts
+    line.classList.add('sweeping');
+}
+
+/* =============================================
    NAVIGATION
    ============================================= */
 const navLinks = document.querySelectorAll('.nav-link');
 const pages    = document.querySelectorAll('.page-module');
 
 function switchPage(targetId) {
+    triggerSweep();
+
     pages.forEach(p => p.classList.remove('active'));
     const target = document.getElementById(targetId);
     if (target) target.classList.add('active');
@@ -16,12 +28,11 @@ function switchPage(targetId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (targetId === 'resume') {
-        // Reset bars to 0, then animate in — works on every visit
+        // Reset bars to 0 then re-animate (works on every visit)
         document.querySelectorAll('.skill-fill').forEach(bar => {
             bar.style.transition = 'none';
             bar.style.width = '0%';
         });
-        // Double rAF ensures the reset renders before the transition fires
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 document.querySelectorAll('.skill-fill').forEach(bar => {
@@ -41,8 +52,14 @@ navLinks.forEach(link => {
     });
 });
 
-// Set initial active nav link
 switchPage('home');
+
+/* =============================================
+   NAVBAR SCROLL SHADOW
+   ============================================= */
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 8);
+}, { passive: true });
 
 /* =============================================
    THEME TOGGLE
@@ -68,9 +85,8 @@ themeBtn.addEventListener('click', () => {
    ============================================= */
 const cursorRing = document.getElementById('cursor');
 const cursorDot  = document.getElementById('cursor-dot');
-const isFine     = window.matchMedia('(pointer: fine)').matches;
 
-if (isFine && cursorRing && cursorDot) {
+if (window.matchMedia('(pointer: fine)').matches && cursorRing && cursorDot) {
     let mx = 0, my = 0, cx = 0, cy = 0;
 
     document.addEventListener('mousemove', e => {
@@ -81,59 +97,75 @@ if (isFine && cursorRing && cursorDot) {
         cursorDot.style.top  = my + 'px';
     });
 
-    document.addEventListener('mouseleave', () => {
-        cursorRing.classList.remove('visible');
-    });
+    document.addEventListener('mouseleave', () => cursorRing.classList.remove('visible'));
 
-    // Enlarge ring on interactive elements
-    const hoverTargets = 'a, button, .project-card, .filter-btn, .stat-item, .contact-item';
-    document.querySelectorAll(hoverTargets).forEach(el => {
+    document.querySelectorAll('a, button, .project-card, .filter-btn, .stat-item, .contact-item, .video-thumb').forEach(el => {
         el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'));
         el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'));
     });
 
-    // Lagged ring animation
-    (function animateCursor() {
+    (function animCursor() {
         cx += (mx - cx) * 0.13;
         cy += (my - cy) * 0.13;
         cursorRing.style.left = cx + 'px';
         cursorRing.style.top  = cy + 'px';
-        requestAnimationFrame(animateCursor);
+        requestAnimationFrame(animCursor);
     })();
 }
 
 /* =============================================
    TYPEWRITER
    ============================================= */
-const subtitles = [
-    'Gameplay Programmer',
-    'Unity Developer',
-    'C# Specialist',
-    'AI-Assisted Developer'
-];
-
-const typeEl = document.getElementById('typewriter');
+const subtitles = ['Gameplay Programmer', 'Unity Developer', 'C# Specialist', 'AI-Assisted Developer'];
+const typeEl    = document.getElementById('typewriter');
 let sIdx = 0, cIdx = 0, deleting = false;
 
 function typeWriter() {
     const word = subtitles[sIdx];
     typeEl.textContent = deleting ? word.slice(0, --cIdx) : word.slice(0, ++cIdx);
-
     let delay = deleting ? 55 : 95;
-
-    if (!deleting && cIdx === word.length) {
-        delay = 1800;
-        deleting = true;
-    } else if (deleting && cIdx === 0) {
-        deleting = false;
-        sIdx = (sIdx + 1) % subtitles.length;
-        delay = 350;
-    }
-
+    if (!deleting && cIdx === word.length) { delay = 1800; deleting = true; }
+    else if (deleting && cIdx === 0) { deleting = false; sIdx = (sIdx + 1) % subtitles.length; delay = 350; }
     setTimeout(typeWriter, delay);
 }
-
 typeWriter();
+
+/* =============================================
+   LAZY VIDEO EMBED (click thumbnail → load iframe)
+
+   If you see "Video unavailable" after clicking:
+   → YouTube Studio → Content → edit each video
+   → Details → More options → tick "Allow embedding" → Save
+   ============================================= */
+document.querySelectorAll('.video-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+        const vid     = thumb.dataset.vid;
+        const wrapper = thumb.parentElement; // .media-wrapper
+        wrapper.innerHTML =
+            `<iframe
+                src="https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&rel=0"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="width:100%;height:100%;border:none;display:block;">
+            </iframe>`;
+    });
+});
+
+/* =============================================
+   PORTFOLIO FILTER
+   ============================================= */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.classList.toggle('hidden', f !== 'all' && !(card.dataset.tags || '').includes(f));
+        });
+    });
+});
 
 /* =============================================
    PARTICLE NETWORK BACKGROUND
@@ -164,7 +196,7 @@ class Particle {
         this.x += this.vx;
         this.y += this.vy;
         if (this.x < 0 || this.x > canvas.width)  this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        if (this.y < 0 || this.y > canvas.height)  this.vy *= -1;
     }
     draw(rgb) {
         ctx.beginPath();
@@ -178,42 +210,24 @@ for (let i = 0; i < COUNT; i++) particles.push(new Particle());
 
 (function drawLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const rgb = body.classList.contains('light-mode') ? '0, 85, 204' : '0, 255, 136';
-
+    const rgb = body.classList.contains('light-mode') ? '0,85,204' : '0,255,136';
     particles.forEach((p, i) => {
         p.update();
         p.draw(rgb);
-        // Draw connecting lines for nearby particles
         for (let j = i + 1; j < particles.length; j++) {
             const q  = particles[j];
             const dx = p.x - q.x;
             const dy = p.y - q.y;
-            const d  = Math.sqrt(dx * dx + dy * dy);
+            const d  = Math.sqrt(dx*dx + dy*dy);
             if (d < 115) {
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(q.x, q.y);
-                ctx.strokeStyle = `rgba(${rgb}, ${0.12 * (1 - d / 115)})`;
-                ctx.lineWidth   = 0.5;
+                ctx.strokeStyle = `rgba(${rgb},${0.12 * (1 - d/115)})`;
+                ctx.lineWidth = 0.5;
                 ctx.stroke();
             }
         }
     });
-
     requestAnimationFrame(drawLoop);
 })();
-
-/* =============================================
-   PORTFOLIO FILTER
-   ============================================= */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const f = btn.dataset.filter;
-        document.querySelectorAll('.project-card').forEach(card => {
-            const tags = card.dataset.tags || '';
-            card.classList.toggle('hidden', f !== 'all' && !tags.includes(f));
-        });
-    });
-});
