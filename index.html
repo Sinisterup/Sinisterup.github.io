@@ -3,245 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume | Tan Shang Ren</title>
+    <title>Tan Shang Ren | Gameplay Programmer & Unity Developer</title>
+    <meta name="description" content="Tan Shang Ren — Unity Developer & Gameplay Programmer. NYP Game Development & Technology final year student based in Singapore.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <nav>
-        <h1>Tan Shang Ren</h1>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <nav id="navbar">
+        <div class="nav-brand">
+            <span class="nav-name" data-text="TSR">TSR</span>
+        </div>
         <div class="nav-links">
-            <a href="#home" class="nav-link" data-target="home">Home</a>
-            <a href="#portfolio" class="nav-link" data-target="portfolio">Portfolio</a>
-            <a href="#resume" class="nav-link" data-target="resume">My Info</a>
-            <button id="theme-toggle" class="theme-btn">Dark Mode</button>
+            <a href="#" class="nav-link active-nav" data-target="home">Home</a>
+            <a href="#" class="nav-link" data-target="portfolio">Portfolio</a>
+            <a href="#" class="nav-link" data-target="resume">Skills</a>
+            <button id="theme-toggle" class="theme-btn" title="Toggle theme">☀️</button>
         </div>
     </nav>
 
     <main>
-        
+
+        <!-- ===== HOME ===== -->
         <section id="home" class="page-module active">
-            <div class="about-container">
-                <div class="home-text">
-                    <h2 class="hero-title">Hi, I'm Shang Ren</h2>
-                    <h3 class="hero-subtitle">Gameplay Programmer & Unity Developer</h3>
-                    <p>An aspiring Game Developer currently in my final year at Nanyang Polytechnic studying Game Development and Technology.</p>
-                    <p>I have a strong foundation in Unity and OpenGL, with a proven ability to collaborate and deliver playable prototypes under tight deadlines through school projects and game jam experience.</p>
-                    
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <div class="hero-eyebrow">
+                        <span class="pulse-dot"></span>
+                        Open to freelance
+                    </div>
+                    <h1 class="hero-title">Tan<br>Shang Ren</h1>
+                    <p class="hero-subtitle"><span id="typewriter"></span><span class="cursor-blink">_</span></p>
+                    <p class="hero-body">
+                        Final year at Nanyang Polytechnic — Game Development & Technology.
+                        Strong foundation in Unity, C#, and OpenGL with shipped prototypes and game jam experience.
+                    </p>
                     <div class="hero-actions">
-                        <a href="#portfolio" class="btn-primary nav-link" data-target="portfolio">Past projects</a>
-                        <a href="#resume" class="btn-secondary nav-link" data-target="resume">My skillsets</a>
+                        <button class="btn-primary nav-link" data-target="portfolio">View Projects</button>
+                        <button class="btn-secondary nav-link" data-target="resume">Skills & Info</button>
                     </div>
                 </div>
-                <img src="Images/PFP.jpg" alt="Tan Shang Ren" class="profile-pic">
+                <div class="hero-visual">
+                    <div class="profile-ring">
+                        <img src="Images/PFP.jpg" alt="Tan Shang Ren" class="profile-pic">
+                        <svg class="ring-svg" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="110" cy="110" r="106" stroke="var(--accent)" stroke-width="1" stroke-dasharray="6 14" opacity="0.5"/>
+                            <circle cx="110" cy="110" r="94"  stroke="var(--accent-2)" stroke-width="0.5" opacity="0.3"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
 
-            <div class="quick-highlights">
-                <div class="highlight-item">Junior Game Developer</div>
-                <div class="highlight-item">2D/3D/VR/Website</div>
-                <div class="highlight-item">NYP Final Year Student</div>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-num">6+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">2D · 3D</span>
+                    <span class="stat-label">Game Types</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">4</span>
+                    <span class="stat-label">Languages</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">NYP</span>
+                    <span class="stat-label">GDT Student</span>
+                </div>
             </div>
         </section>
 
+        <!-- ===== PORTFOLIO ===== -->
         <section id="portfolio" class="page-module">
-            <h2>My Projects</h2>
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="unity">Unity · C#</button>
+                    <button class="filter-btn" data-filter="android">Android</button>
+                    <button class="filter-btn" data-filter="opengl">OpenGL · C++</button>
+                </div>
+            </div>
 
             <div class="portfolio-grid">
-                <div class="project-card modern-frame">
+
+                <div class="project-card" data-tags="unity">
                     <div class="media-wrapper">
-                        <iframe width="560" height="315" 
-                        src="https://www.youtube-nocookie.com/embed/Xnp_DdjP0s4?si=qLtOHYHLvIjssPWw" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
-                    </div>
-                    <div class="project-info">
-                        <h3>
-                            Skypiea
-                        </h3>
-                        <div class="project-tags">
-                            <span>Unity</span><span>C#</span><span>3D</span><span>10 days</span>
-                        </div>
-                        <p>
-                            A prototype action platformer centered on momentum-based movement like grappling and wall-running. 
-                            Its core codable gameplay relies on a strict two-weapon inventory (swords, bows, guns), 
-                            deployable single-use ability cards , and a three-element damage system (Fire, Ice, Electricity). 
-                            Progression is driven by randomized chest loot, infinitely refreshable shops, checkpoint-based respawning, 
-                            and combat against AI minions and a two-phase boss. (I created player, grappler, 
-                            Boss phase 1, card system, checkpoint system, item spawners)</p>
-                    </div>
-                </div>
-            
-                <div class="project-card modern-frame">
-                    <div class="media-wrapper">
-                        <iframe width="560" height="315" 
-                        src="https://www.youtube-nocookie.com/embed/SP2J2dYC4wRD9EIe" 
-                        title="YouTube video player" 
-                        frameBorder="0"   
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  
-                        allowFullScreen><br>Powered by <a href="https://youtubeembedcode.com">how to get embed code from youtube</a> and 
-                        <a href="https://allabeviljas.se">smslån</a>
+                        <iframe src="https://www.youtube-nocookie.com/embed/Xnp_DdjP0s4?si=qLtOHYHLvIjssPWw"
+                            title="Skypiea" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                     </div>
                     <div class="project-info">
-                        <h3>Codeway Runners</h3>
-                        <div class="project-tags">
-                            <span>Android studio</span><span>Java</span>
+                        <div class="project-header">
+                            <h3>Skypiea</h3>
+                            <span class="project-badge">10 days</span>
                         </div>
-                        <p>
-                            A prototype mobile game freaturing an endless runner mobile game that incorporates roguelike elements 
-                            into its swipe-based gameplay. Players navigate three lanes by swiping left, right, up, and down to 
-                            avoid procedurally generated barriers. The core loop involves collecting randomly spawned coins and power-ups, 
-                            such as magnets, while progressing through the run. A defining feature is the roguelike progression system, 
-                            where upon reaching certain score milestones, players choose between two randomized upgrades, such as increased 
-                            movement speed or extended magnet duration. The game also includes quick-time events that players must complete 
-                            to continue their run, and features achievement tracking and a post-game leaderboard. (I created the power-up 
-                            system and its power-ups, collectibles, roguelike upgrades, quick timed events, player accounts based on usernames, 
-                            moving background)
-                        </p>
+                        <div class="project-tags">
+                            <span>Unity</span><span>C#</span><span>3D</span>
+                        </div>
+                        <p>Action platformer with momentum-based grappling and wall-running. Two-weapon inventory, deployable ability cards, three-element damage system (Fire/Ice/Electricity), procedural loot, shops, and a two-phase boss fight.</p>
+                        <div class="contribution">// Player · Grappler · Boss Phase 1 · Card System · Checkpoint · Item Spawners</div>
                     </div>
                 </div>
 
-                <div class="project-card modern-frame">
+                <div class="project-card" data-tags="android">
                     <div class="media-wrapper">
-                        <iframe width="560" height="315" 
-                        src="https://www.youtube-nocookie.com/embed/kpK-cU0JMpU?si=7rv3FKgLfu6YOFFl&amp;start=4" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
+                        <!--
+                            FIXME: Original embed URL was malformed (ID "SP2J2dYC4wRD9EIe" is 16 chars — YouTube IDs are 11).
+                            Replace VIDEO_ID below with the correct 11-character YouTube video ID, then
+                            delete this placeholder div and uncomment the iframe.
+                        -->
+                        <div class="video-placeholder">
+                            <div class="vp-icon">📱</div>
+                            <span>Codeway Runners</span>
+                            <small>⚠ Fix needed: replace VIDEO_ID in index.html with the correct YouTube ID</small>
+                        </div>
+                        <!--
+                        <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+                            title="Codeway Runners" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                        </iframe>
+                        -->
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header">
+                            <h3>Codeway Runners</h3>
+                        </div>
+                        <div class="project-tags">
+                            <span>Android Studio</span><span>Java</span><span>Mobile</span>
+                        </div>
+                        <p>Endless runner featuring roguelike progression. Three-lane swipe navigation, procedurally generated barriers, QTE events, randomised upgrade choices at score milestones, achievement tracking, and a post-run leaderboard.</p>
+                        <div class="contribution">// Power-up System · Collectibles · Roguelike Upgrades · QTEs · Player Accounts · Scrolling BG</div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-tags="unity">
+                    <div class="media-wrapper">
+                        <iframe src="https://www.youtube-nocookie.com/embed/kpK-cU0JMpU?si=7rv3FKgLfu6YOFFl&start=4"
+                            title="Unity Shaders" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                     </div>
                     <div class="project-info">
-                        <h3>Unity Shaders</h3>
+                        <div class="project-header">
+                            <h3>Unity Shaders</h3>
+                        </div>
                         <div class="project-tags">
                             <span>Unity</span><span>HLSL</span><span>3D</span>
                         </div>
-                        <p>
-                            A small project where i tried coding out my own shaders in Unity HLSL. For this project I wrote basic vertex and 
-                            fragment shaders. The project includes different colours, textures with alpha, forward rendering pipline supporting 
-                            multiple directional, point and spot lights with Blinn-Phong shading, Tangent-space normal mapping, multiple shadows 
-                            with 3x3 Percentage-Closer Filtering Reflection and water made with vertex-based wave displacement, dual scrolling 
-                            normal map for complex ripples, and Fresnel-based color blending to simulate variable depth and reflections. 
-                        </p>
+                        <p>Custom HLSL shaders written from scratch: Blinn-Phong lighting, tangent-space normal mapping, PCF shadow filtering, and a water shader using vertex displacement, dual-scrolling normal maps, and Fresnel-based depth blending.</p>
+                        <div class="contribution">// Solo Project — All shaders written from scratch</div>
                     </div>
                 </div>
 
-                <div class="project-card modern-frame">
+                <div class="project-card" data-tags="unity">
                     <div class="media-wrapper">
-                        <iframe width="560" height="315" 
-                        src="https://www.youtube-nocookie.com/embed/PITdSb0FITk?si=ceVogVfHhL8Iy-EC" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
+                        <iframe src="https://www.youtube-nocookie.com/embed/PITdSb0FITk?si=ceVogVfHhL8Iy-EC"
+                            title="Unity 3D FPS" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                     </div>
                     <div class="project-info">
-                        <h3>Unity 3D FPS</h3>
+                        <div class="project-header">
+                            <h3>Unity 3D FPS</h3>
+                        </div>
                         <div class="project-tags">
                             <span>Unity</span><span>C#</span><span>3D</span>
                         </div>
-                        <p>
-                            A small project where i tried coding out first person shooter mechanics. Mechanics include basic player movement 
-                            (walk, run, jump, wall-run, slide), gun system, raycast gun, physics gun, homing missile
-                        </p>
+                        <p>First-person shooter prototype with a full movement system (walk, run, jump, wall-run, slide), raycast gun, physics gun, and homing missile mechanics.</p>
+                        <div class="contribution">// Solo Project</div>
                     </div>
                 </div>
 
-                <div class="project-card modern-frame">
+                <div class="project-card" data-tags="unity">
                     <div class="media-wrapper">
-                        <iframe width="560" height="315" 
-                        src="https://www.youtube-nocookie.com/embed/OtHuZgdPUAg?si=vaON-NuAM88N6tnd" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
+                        <iframe src="https://www.youtube-nocookie.com/embed/OtHuZgdPUAg?si=vaON-NuAM88N6tnd"
+                            title="Unity 3D Third Person" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                     </div>
                     <div class="project-info">
-                        <h3>Unity 3D third person</h3>
+                        <div class="project-header">
+                            <h3>Unity 3D Third Person</h3>
+                        </div>
                         <div class="project-tags">
                             <span>Unity</span><span>C#</span><span>3D</span>
                         </div>
-                        <p>
-                            A small project where i tried coding out third person fighting mechanics. Mechanics include basic player movement 
-                            (walk, run, jump, crouch, stairs movement), combat system featuring weapons such as swords (chain combo system, 
-                            blocking, special attack, basic attack, heavy attack, parry), object inspection, cctv camera, glitch shaders, snow 
-                            shaders, glitch shaders, sonar shaders
-                        </p>
+                        <p>Third-person combat prototype with chain combos, blocking, parry, heavy/special attacks, and stair traversal. Features CCTV camera, object inspection, and custom glitch, snow, and sonar shaders.</p>
+                        <div class="contribution">// Solo Project</div>
                     </div>
                 </div>
 
-                <div class="project-card modern-frame">
+                <div class="project-card" data-tags="opengl">
                     <div class="media-wrapper">
-                        <iframe width="560" height="315" 
-                        src="https://www.youtube-nocookie.com/embed/fq-YCfh8Bwo?si=bXtKKlCNpdi5BX8v" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
+                        <iframe src="https://www.youtube-nocookie.com/embed/fq-YCfh8Bwo?si=bXtKKlCNpdi5BX8v"
+                            title="2D AI Simulation" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                         </iframe>
                     </div>
                     <div class="project-info">
-                        <h3>2D AI simulation</h3>
+                        <div class="project-header">
+                            <h3>2D AI Simulation</h3>
+                        </div>
                         <div class="project-tags">
                             <span>OpenGL</span><span>C++</span>
                         </div>
-                        <p>
-                            A small project where i tried coding out a turn-based simulation game with fog of war mechanics, entities with their 
-                            own unique finite state machines. The core of the simulation is based on an action point system that governs every entities' 
-                            movement and combat per turn, this is supported by an economy where miner entities have to mine materials to spawn 
-                            different entities. The units are driven using A* star and Depth first search pathfinding and they have to navigate a 
-                            randomly generated tile-based map where in-game events can happen to change tiles to other tiles costing different amounts 
-                            of ap for entities to move to.
-                        </p>
+                        <p>Turn-based strategy simulation with fog of war, unique finite state machine entities, A* and DFS pathfinding, action point economy, and a procedurally generated tile map with dynamic in-game events.</p>
+                        <div class="contribution">// Solo Project</div>
                     </div>
                 </div>
+
             </div>
         </section>
 
+        <!-- ===== SKILLS / RESUME ===== -->
         <section id="resume" class="page-module">
-            <h2>About Me</h2>
-            
+            <h2 class="section-title">Skills & Info</h2>
             <div class="resume-grid">
-                <div>
-                    <h3>Programming Languages</h3>
+
+                <div class="skills-col">
+                    <h3 class="col-title">Languages</h3>
                     <div class="skill-group">
-                        <div class="skill-item"><span class="skill-name">C#</span> <span class="proficiency high">Advanced</span></div>
-                        <div class="skill-item"><span class="skill-name">C++</span> <span class="proficiency med">Proficient</span></div>
-                        <div class="skill-item"><span class="skill-name">Java</span> <span class="proficiency med">Intermediate</span></div>
-                        <div class="skill-item"><span class="skill-name">Python</span> <span class="proficiency med">Intermediate</span></div>
-                        <div class="skill-item"><span class="skill-name">HTML / CSS / JS</span> <span class="proficiency med">Intermediate</span></div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">C#</span><span class="skill-level-label">Advanced</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">C++</span><span class="skill-level-label">Proficient</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="72"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Java</span><span class="skill-level-label">Intermediate</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="55"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Python</span><span class="skill-level-label">Intermediate</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="50"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">HTML · CSS · JS</span><span class="skill-level-label">Intermediate</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="50"></div></div>
+                        </div>
                     </div>
 
-                    <h3 style="margin-top: 2rem;">Software & Engines</h3>
+                    <h3 class="col-title" style="margin-top: 2.5rem;">Engines & Tools</h3>
                     <div class="skill-group">
-                        <div class="skill-item"><span class="skill-name">Unity</span> <span class="proficiency high">Advanced</span></div>
-                        <div class="skill-item"><span class="skill-name">OpenGL</span> <span class="proficiency med">Proficient</span></div>
-                        <div class="skill-item"><span class="skill-name">Android Studio</span> <span class="proficiency med">Intermediate</span></div>
-                        <div class="skill-item"><span class="skill-name">Unreal Engine</span> <span class="proficiency low">Familiar</span></div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Unity</span><span class="skill-level-label">Advanced</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">OpenGL</span><span class="skill-level-label">Proficient</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="68"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Android Studio</span><span class="skill-level-label">Intermediate</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="50"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Unreal Engine</span><span class="skill-level-label">Familiar</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="22"></div></div>
+                        </div>
                     </div>
                 </div>
-                
-                <div>
-                    <h3>Education</h3>
-                    <p><strong>Nanyang Polytechnic</strong><br>Game Development and Technology (2024 - 2027) [in progress]</p>
-                    
-                    <h3>Contact</h3>
-                    <p>Email: <a href="mailto:tanshangren07@gmail.com" style="color: var(--accent-color);">tanshangren07@gmail.com</a></p>
-                    <p>LinkedIn: <a href="https://www.linkedin.com/in/tan-shang-ren-85a21b3a5/" target="_blank" style="color: var(--accent-color);">Tan Shang Ren</a><br>
-                    <small><i>[More info including things outside game development]</i></small></p>
+
+                <div class="info-col">
+                    <div class="info-card">
+                        <h3 class="col-title">Education</h3>
+                        <div class="edu-item">
+                            <div class="edu-school">Nanyang Polytechnic</div>
+                            <div class="edu-course">Diploma in Game Development & Technology</div>
+                            <div class="edu-year">2024 – 2027 · In Progress</div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3 class="col-title">Contact</h3>
+                        <div class="contact-list">
+                            <a href="mailto:tanshangren07@gmail.com" class="contact-item">
+                                <span class="contact-icon">✉</span>
+                                tanshangren07@gmail.com
+                            </a>
+                            <a href="https://www.linkedin.com/in/tan-shang-ren-85a21b3a5/" target="_blank" rel="noopener" class="contact-item">
+                                <span class="contact-icon">in</span>
+                                Tan Shang Ren · LinkedIn
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3 class="col-title">Looking For</h3>
+                        <ul class="looking-list">
+                            <li>Freelance Unity / C# work</li>
+                            <li>Part-time game dev roles</li>
+                            <li>Indie game collaboration</li>
+                            <li>Internship opportunities</li>
+                        </ul>
+                    </div>
                 </div>
+
             </div>
         </section>
 
