@@ -66,7 +66,7 @@ themeBtn.addEventListener('click', () => {
 /* =============================================
    ROLE TYPEWRITER
    ============================================= */
-const roles  = ['Gameplay Programmer', 'Unity Developer', 'Unreal Tinkerer', 'VR Developer'];
+const roles  = ['Gameplay Programmer', 'VR Developer', 'Shader Programmer', 'Unity Developer'];
 const typeEl = document.getElementById('typewriter');
 if (!reducedMotion) {
     let r = 0, c = roles[0].length, deleting = true;
@@ -146,8 +146,7 @@ public class SpigotDispenser : MonoBehaviour
     }
 }
 `;
-const hackOut  = document.getElementById('hack-output');
-const hackHint = document.getElementById('hack-hint');
+const hackOut = document.getElementById('hack-output');
 let hackPos = 0;
 
 function hackType(n) {
@@ -156,17 +155,61 @@ function hackType(n) {
     hackOut.textContent = SOURCE.slice(0, hackPos);
     hackOut.scrollTop = hackOut.scrollHeight;
 }
-
-if (reducedMotion) {
-    hackOut.textContent = SOURCE;
-    hackHint.textContent = '';
-} else {
-    // idle auto-typing so the terminal is alive before anyone presses a key
-    let lastKey = 0;
-    setInterval(() => { if (Date.now() - lastKey > 2500 && document.getElementById('home').classList.contains('active')) hackType(1); }, 60);
-    window.__hackKey = () => { lastKey = Date.now(); };
-}
+if (reducedMotion) hackOut.textContent = SOURCE;
 hackOut.addEventListener('click', () => hackType(18));   // tap to type on touch screens
+
+/* =============================================
+   MONITOR — reel of project frames / code tab
+   ============================================= */
+const tabs   = { reel: document.getElementById('tab-reel'), code: document.getElementById('tab-code') };
+const reelEl = document.getElementById('reel');
+const slides = [...reelEl.querySelectorAll('.reel-slide')];
+const dotBox = reelEl.querySelector('.reel-dots');
+let slide = 0, reelTimer = null, reelPaused = false;
+
+function showTab(name, focus) {
+    Object.entries(tabs).forEach(([k, t]) => {
+        const on = k === name;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+    });
+    reelEl.hidden   = name !== 'reel';
+    hackOut.hidden  = name !== 'code';
+    if (focus) tabs[name].focus();
+}
+Object.entries(tabs).forEach(([k, t]) => {
+    t.addEventListener('click', () => showTab(k));
+    t.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); showTab(k === 'reel' ? 'code' : 'reel', true); }
+    });
+});
+
+function showSlide(i) {
+    slide = (i + slides.length) % slides.length;
+    slides.forEach((s, j) => {
+        s.classList.toggle('active', j === slide);
+        s.tabIndex = j === slide ? 0 : -1;
+        s.setAttribute('aria-hidden', String(j !== slide));
+    });
+    dotBox.querySelectorAll('button').forEach((d, j) => d.setAttribute('aria-current', String(j === slide)));
+}
+slides.forEach((s, j) => {
+    const d = document.createElement('button');
+    d.type = 'button';
+    d.setAttribute('aria-label', `Show ${s.querySelector('.reel-cap').firstChild.textContent.trim()}`);
+    d.addEventListener('click', () => showSlide(j));
+    dotBox.appendChild(d);
+});
+showSlide(0);
+
+if (!reducedMotion) {
+    reelTimer = setInterval(() => { if (!reelPaused && !reelEl.hidden) showSlide(slide + 1); }, 4000);
+    reelEl.addEventListener('mouseenter', () => { reelPaused = true; });
+    reelEl.addEventListener('mouseleave', () => { reelPaused = false; });
+    reelEl.addEventListener('focusin',    () => { reelPaused = true; });
+    reelEl.addEventListener('focusout',   () => { reelPaused = false; });
+}
 
 /* =============================================
    KEYBOARD — 1-4 navigate, letters hack, Alt×3 / CapsLock×3 popups
@@ -209,8 +252,9 @@ document.addEventListener('keydown', e => {
     if (nav[e.key]) { location.hash = nav[e.key]; return; }
     if (e.key === '4') { location.href = 'mailto:tanshangren07@gmail.com'; return; }
 
+    // typing anywhere on the home page flips the monitor to the code tab, hackertyper-style
     if (document.getElementById('home').classList.contains('active') && e.key.length === 1 && e.key !== ' ') {
-        if (window.__hackKey) window.__hackKey();
+        if (hackOut.hidden) showTab('code');
         hackType(3 + Math.floor(Math.random() * 4));
     }
 });
@@ -244,24 +288,3 @@ if ('IntersectionObserver' in window && !reducedMotion) {
     }, { threshold: 0.6 });
     clips.forEach(v => io.observe(v));
 }
-
-/* =============================================
-   PORTFOLIO FILTER
-   ============================================= */
-const filterBtns = document.querySelectorAll('.filter-btn');
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        filterBtns.forEach(b => {
-            b.classList.toggle('active', b === btn);
-            b.setAttribute('aria-pressed', String(b === btn));
-        });
-        const f = btn.dataset.filter;
-        let shown = 0;
-        document.querySelectorAll('.project-card').forEach(card => {
-            const match = f === 'all' || (card.dataset.tags || '').split(' ').includes(f);
-            card.classList.toggle('hidden', !match);
-            if (match) shown++;
-        });
-        document.getElementById('empty-note').hidden = shown > 0;
-    });
-});
