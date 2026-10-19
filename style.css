@@ -142,6 +142,7 @@ main:focus { outline: none; }
 
 .panel { background: var(--panel); border: 1px solid var(--border); padding: 1.3rem; }
 .panel + .panel { margin-top: 1rem; }
+.about-panel p + p { margin-top: 0.7rem; }
 
 .label {
     display: inline-block; margin-right: 0.5rem;
@@ -291,6 +292,14 @@ main:focus { outline: none; }
 }
 .video-thumb:hover .play-btn, .video-thumb:focus-visible .play-btn { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .video-thumb:focus-visible { outline-offset: -4px; }
+.trailer-btn {
+    position: absolute; right: 0.75rem; bottom: 0.75rem; z-index: 2;
+    padding: 0.4rem 0.75rem;
+    background: rgba(0,0,0,0.75); color: var(--text-bright);
+    border: 1px solid rgba(255,255,255,0.25);
+    font: 600 0.75rem var(--mono); text-transform: uppercase; letter-spacing: 1px;
+}
+.trailer-btn:hover, .trailer-btn:focus-visible { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 
 .logo-media { display: grid; place-items: center; background: radial-gradient(circle at center, #3a2414 0%, #120b06 80%); }
 .logo-media img { width: 80%; height: auto; }

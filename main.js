@@ -30,10 +30,12 @@ function showPage(route, focus) {
             else a.removeAttribute('aria-current');
         }
     });
+    // the #skills page is labelled "about" everywhere it is shown
+    const label = route === 'skills' ? 'about' : route;
     document.title = route === 'home'
         ? 'Tan Shang Ren | Gameplay Programmer'
-        : `${route[0].toUpperCase() + route.slice(1)} | Tan Shang Ren`;
-    document.querySelector('.brand-path').textContent = route === 'home' ? '~' : `~/${route}`;
+        : `${label[0].toUpperCase() + label.slice(1)} | Tan Shang Ren`;
+    document.querySelector('.brand-path').textContent = route === 'home' ? '~' : `~/${label}`;
     const target = location.hash.slice(1);
     const anchor = target && !PAGES.includes(target) && document.getElementById(target);
     if (anchor) anchor.scrollIntoView();
@@ -271,6 +273,23 @@ document.querySelectorAll('.video-thumb').forEach(thumb => {
         iframe.referrerPolicy = 'strict-origin-when-cross-origin';
         iframe.allowFullscreen = true;
         thumb.replaceWith(iframe);
+        iframe.focus();
+    });
+});
+
+/* =============================================
+   TRAILER BUTTON — swaps a card's silent loop for the full YouTube trailer
+   ============================================= */
+document.querySelectorAll('.trailer-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const media  = btn.parentElement;
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.vid}?autoplay=1&rel=0`;
+        iframe.title = 'Trailer';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        media.replaceChildren(iframe);
         iframe.focus();
     });
 });
