@@ -3,233 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tan Shang Ren | Gameplay Programmer & Unity Developer</title>
-    <meta name="description" content="Tan Shang Ren — Unity Developer & Gameplay Programmer. NYP Game Development & Technology final year student.">
+    <title>Tan Shang Ren | Gameplay Programmer</title>
+    <meta name="description" content="Tan Shang Ren — gameplay programmer working in Unity, Unreal Engine and VR. Game Development & Technology student at Nanyang Polytechnic.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#000000">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sinisterup.github.io/">
+    <meta property="og:title" content="Tan Shang Ren | Gameplay Programmer">
+    <meta property="og:description" content="Unity, Unreal Engine and VR projects by Tan Shang Ren.">
+    <meta property="og:image" content="https://sinisterup.github.io/Images/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div id="sweep-line"></div>
-    <canvas id="particle-canvas"></canvas>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="crt" aria-hidden="true"></div>
 
-    <nav id="navbar">
-        <div class="nav-brand">
-            <span class="nav-name" data-text="TSR">TSR</span>
-        </div>
-        <div class="nav-links">
-            <a href="#" class="nav-link active-nav" data-target="home">Home</a>
-            <a href="#" class="nav-link" data-target="portfolio">Portfolio</a>
-            <a href="#" class="nav-link" data-target="resume">Skills</a>
-            <button id="theme-toggle" class="theme-btn" title="Toggle theme">☀️</button>
-        </div>
-    </nav>
+    <!-- ===== TOP STATUS BAR ===== -->
+    <header class="topbar">
+        <a href="#home" class="brand" data-route="home">tsr<span class="brand-dim">@portfolio</span>:<span class="brand-path">~</span>$</a>
+        <span class="topbar-status" aria-hidden="true"><span class="pulse-dot"></span>open to work</span>
+        <button id="theme-toggle" class="theme-btn" type="button" aria-pressed="false">
+            <span class="theme-swatch" aria-hidden="true"></span><span id="theme-label">green</span>
+            <span class="visually-hidden">: switch phosphor colour</span>
+        </button>
+    </header>
 
-    <main>
+    <main id="main" tabindex="-1">
 
         <!-- ===== HOME ===== -->
-        <section id="home" class="page-module active">
+        <section id="home" class="page active" aria-labelledby="home-title">
             <div class="hero-grid">
                 <div class="hero-text">
-                    <div class="hero-eyebrow"><span class="pulse-dot"></span>Open to freelance</div>
-                    <h1 class="hero-title">Tan<br>Shang Ren</h1>
-                    <p class="hero-subtitle"><span id="typewriter"></span><span class="cursor-blink">_</span></p>
-                    <p class="hero-body">Final year at Nanyang Polytechnic — Game Development & Technology. Strong foundation in Unity, C#, and OpenGL with shipped prototypes and game jam experience.</p>
+                    <div class="id-row">
+                        <img src="Images/profile.jpg" alt="Portrait of Tan Shang Ren" class="id-photo" width="88" height="88">
+                        <div class="id-meta">
+                            <div><span class="dim">ID</span> TSR-07</div>
+                            <div><span class="dim">LOC</span> Singapore</div>
+                            <div><span class="dim">STATUS</span> <span class="ok">available</span></div>
+                        </div>
+                    </div>
+                    <p class="prompt">whoami</p>
+                    <h1 id="home-title" class="hero-title">Tan<br>Shang Ren</h1>
+                    <p class="hero-role"><span class="dim">&gt;</span> <span id="typewriter">Gameplay Programmer</span><span class="caret" aria-hidden="true"></span></p>
+                    <p class="hero-body">Final-year Game Development &amp; Technology student at Nanyang Polytechnic. I build gameplay systems in Unity and C#, shaders and scenes in Unreal Engine, and VR interactions for Meta Quest.</p>
                     <div class="hero-actions">
-                        <button class="btn-primary nav-link" data-target="portfolio">View Projects</button>
-                        <button class="btn-secondary nav-link" data-target="resume">Skills & Info</button>
+                        <a href="#projects" class="btn btn-primary" data-route="projects">[ view projects ]</a>
+                        <a href="#skills" class="btn" data-route="skills">[ skills &amp; contact ]</a>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="profile-ring">
-                        <img src="Images/PFP.jpg" alt="Tan Shang Ren" class="profile-pic">
-                        <svg class="ring-svg" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="110" cy="110" r="106" stroke="var(--accent)" stroke-width="1" stroke-dasharray="6 14" opacity="0.5"/>
-                            <circle cx="110" cy="110" r="94"  stroke="var(--accent-2)" stroke-width="0.5" opacity="0.3"/>
-                        </svg>
+
+                <figure class="terminal hacker" aria-label="Interactive code terminal">
+                    <div class="term-bar">
+                        <span class="term-title">~/src/SpigotDispenser.cs</span>
+                        <span class="term-hint" id="hack-hint">type anything</span>
                     </div>
-                </div>
+                    <pre class="term-body" id="hack-output" aria-hidden="true"></pre>
+                    <figcaption class="visually-hidden">Decorative terminal: pressing keys types out a C# script from one of my VR projects.</figcaption>
+                </figure>
             </div>
-            <div class="stats-bar">
-                <div class="stat-item"><span class="stat-num">6+</span><span class="stat-label">Projects</span></div>
-                <div class="stat-item"><span class="stat-num">2D · 3D</span><span class="stat-label">Game Types</span></div>
-                <div class="stat-item"><span class="stat-num">4</span><span class="stat-label">Languages</span></div>
-                <div class="stat-item"><span class="stat-num">NYP</span><span class="stat-label">GDT Student</span></div>
-            </div>
+
+            <dl class="stats">
+                <div><dt>projects</dt><dd>10+</dd></div>
+                <div><dt>engines</dt><dd>Unity · Unreal</dd></div>
+                <div><dt>platforms</dt><dd>PC · VR · Mobile · Web</dd></div>
+                <div><dt>school</dt><dd>NYP GDT '27</dd></div>
+            </dl>
         </section>
 
-        <!-- ===== PORTFOLIO ===== -->
-        <!--
-            FIX FOR "VIDEO UNAVAILABLE" / ERROR 153:
-            Your videos have embedding disabled. To fix: YouTube Studio → Content
-            → click each video → Details → scroll down → Show more → tick "Allow embedding" → Save.
-            Thumbnails always load. The iframe only loads when you click play.
-        -->
-        <section id="portfolio" class="page-module">
+        <!-- ===== PROJECTS ===== -->
+        <section id="projects" class="page" aria-labelledby="projects-title">
             <div class="section-header">
-                <h2 class="section-title">Projects</h2>
-                <div class="filter-bar">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="unity">Unity · C#</button>
-                    <button class="filter-btn" data-filter="android">Android</button>
-                    <button class="filter-btn" data-filter="opengl">OpenGL · C++</button>
+                <p class="prompt">ls ~/projects</p>
+                <h2 id="projects-title" class="section-title">Projects</h2>
+                <div class="filter-bar" role="group" aria-label="Filter projects">
+                    <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">all</button>
+                    <button class="filter-btn" type="button" data-filter="unity" aria-pressed="false">unity</button>
+                    <button class="filter-btn" type="button" data-filter="unreal" aria-pressed="false">unreal</button>
+                    <button class="filter-btn" type="button" data-filter="vr" aria-pressed="false">vr</button>
+                    <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">web</button>
+                    <button class="filter-btn" type="button" data-filter="android" aria-pressed="false">android</button>
+                    <button class="filter-btn" type="button" data-filter="opengl" aria-pressed="false">opengl</button>
                 </div>
             </div>
+
             <div class="portfolio-grid">
 
-                <div class="project-card" data-tags="unity">
+                <!-- AI Study Companion (internship, under NDA: no screenshots or client details) -->
+                <article class="project-card" data-tags="web">
+                    <div class="media-wrapper nda-media">
+                        <pre class="arch" aria-hidden="true">
+ ┌──────────────┐   ┌──────────────┐
+ │  desktop     │──▶│  web app     │
+ │  companion   │◀──│  dashboard   │
+ └──────┬───────┘   └──────┬───────┘
+        │   chat · notes   │
+        └───────┬──────────┘
+         ┌──────▼───────┐   ┌────────┐
+         │  python api  │──▶│ AI     │
+         │  auth · data │◀──│ tutor  │
+         └──────────────┘   └────────┘</pre>
+                        <span class="nda-tag">screenshots withheld · NDA</span>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header"><h3>AI Study Companion</h3><span class="project-badge">Internship · Jul–Aug 2026</span></div>
+                        <ul class="project-tags"><li>React</li><li>TypeScript</li><li>Python</li><li>Electron</li></ul>
+                        <p>A study app for university students with an AI tutor chat, a learning-style onboarding quiz, a dashboard, notes, a planner and daily quizzes, plus teacher tools. A desktop companion sits on screen, opens a chat bubble and jumps to any part of the app from a radial shortcut menu.</p>
+                        <p class="contribution">// Built from scratch during my internship: web app, API, desktop companion, teacher tools (attendance, class quizzes) and reminders</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-tags="unreal">
+                    <div class="media-wrapper spec-media">
+                        <pre class="arch" aria-hidden="true">
+ Content/Mine
+ ├─ Water        material · ocean surface
+ ├─ Underwater   post-process
+ ├─ Painterly    post-process
+ ├─ Voronoi      material · caustics
+ └─ Cross, Effect  material functions</pre>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header"><h3>Ocean &amp; Post-Process Materials</h3><span class="project-badge">Solo · Jul 2026</span></div>
+                        <ul class="project-tags"><li>Unreal Engine 5</li><li>Materials</li><li>Post-process</li></ul>
+                        <p>Material studies in Unreal Engine 5: an ocean surface on a large water volume, an underwater post-process pass, a painterly post-process filter driven by scene textures, and Voronoi-based caustics built from reusable material functions.</p>
+                        <p class="contribution">// Solo — all materials and functions in my own folder; downloaded textures and sample shaders not included</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-tags="unreal">
+                    <div class="media-wrapper spec-media">
+                        <pre class="arch" aria-hidden="true">
+ NS_SchoolOfFish
+ ├─ emitter    fish agents
+ ├─ forces     vector field
+ └─ render     animated mesh</pre>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header"><h3>School of Fish</h3><span class="project-badge">Solo · 2026</span></div>
+                        <ul class="project-tags"><li>Unreal Engine 5</li><li>Niagara</li><li>VFX</li></ul>
+                        <p>A Niagara particle system that spawns a school of animated fish and steers them through a vector field so they drift and turn together, rendered with a mesh renderer.</p>
+                        <p class="contribution">// Solo — Niagara system and setup are mine; the stingray model and animations are third-party</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-tags="unreal vr">
+                    <div class="media-wrapper spec-media">
+                        <pre class="arch" aria-hidden="true">
+ L_XRTemplate (OpenXR)
+ ├─ BP Eye     interactable
+ ├─ BP Heart   interactable
+ ├─ BP Spear   interactable
+ └─ media      in-world video</pre>
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header"><h3>VR Greybox Demo</h3><span class="project-badge">Solo · Aug 2026</span></div>
+                        <ul class="project-tags"><li>Unreal Engine 5</li><li>VR</li><li>Blueprints</li><li>OpenXR</li></ul>
+                        <p>A greybox prototype of a VR experience built on Unreal's VR template: the level layout, Blueprint interactables (an eye, a heart and a spear) and in-world video playback.</p>
+                        <p class="contribution">// Solo — level, Blueprints and video sequences</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-tags="unity vr">
+                    <div class="media-wrapper logo-media">
+                        <img src="Images/panda-unexpress.png" alt="Panda Unexpress logo: a bubble tea cup with tapioca pearls" loading="lazy" width="800" height="442">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header"><h3>Panda Unexpress</h3><span class="project-badge">Team of 3 · Apr–Jun 2026</span></div>
+                        <ul class="project-tags"><li>Unity</li><li>C#</li><li>VR</li><li>Meta Quest</li></ul>
+                        <p>VR bubble-tea shop for Meta Quest. Customers arrive with orders; grab a cup, scoop ice, pull the spigot to pour tea, add sugar, toppings and boba pearls, seal it and serve before their patience runs out. Includes voice commands, upgrades, achievements and a guided tutorial.</p>
+                        <p class="contribution">// Drink-making station (cup dispenser, spigot, sugar machine, ice scoop, toppings, boba, sealer, recipes) · Economy, achievement, event &amp; profile managers · Voice commands · Hand animation · Game-over UI</p>
+                    </div>
+                </article>
+
+                <article class="project-card" data-tags="unity">
                     <div class="media-wrapper">
-                        <div class="video-thumb" data-vid="Xnp_DdjP0s4">
-                            <img src="https://img.youtube.com/vi/Xnp_DdjP0s4/hqdefault.jpg" alt="Skypiea" loading="lazy">
-                            <button class="play-btn" aria-label="Play Skypiea video">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                        <button class="video-thumb" type="button" data-vid="Xnp_DdjP0s4" aria-label="Play Skypiea video">
+                            <img src="https://img.youtube.com/vi/Xnp_DdjP0s4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                            <span class="play-btn" aria-hidden="true">▶ play</span>
+                        </button>
                     </div>
                     <div class="project-info">
                         <div class="project-header"><h3>Skypiea</h3><span class="project-badge">10 days</span></div>
-                        <div class="project-tags"><span>Unity</span><span>C#</span><span>3D</span></div>
+                        <ul class="project-tags"><li>Unity</li><li>C#</li><li>3D</li></ul>
                         <p>Action platformer with momentum-based grappling and wall-running. Two-weapon inventory, deployable ability cards, three-element damage system, procedural loot, and a two-phase boss fight.</p>
-                        <div class="contribution">// Player · Grappler · Boss Phase 1 · Card System · Checkpoint · Item Spawners</div>
+                        <p class="contribution">// Player · Grappler · Boss Phase 1 · Card System · Checkpoint · Item Spawners</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card" data-tags="android">
+                <article class="project-card" data-tags="android">
                     <div class="media-wrapper">
-                        <!-- Fixed: correct video ID from https://youtu.be/z3ICHHIX5F0 -->
-                        <div class="video-thumb" data-vid="z3ICHHIX5F0">
-                            <img src="https://img.youtube.com/vi/z3ICHHIX5F0/hqdefault.jpg" alt="Codeway Runners" loading="lazy">
-                            <button class="play-btn" aria-label="Play Codeway Runners video">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                        <button class="video-thumb" type="button" data-vid="z3ICHHIX5F0" aria-label="Play Codeway Runners video">
+                            <img src="https://img.youtube.com/vi/z3ICHHIX5F0/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                            <span class="play-btn" aria-hidden="true">▶ play</span>
+                        </button>
                     </div>
                     <div class="project-info">
-                        <div class="project-header"><h3>Codeway Runners</h3></div>
-                        <div class="project-tags"><span>Android Studio</span><span>Java</span><span>Mobile</span></div>
+                        <div class="project-header"><h3>Codeway Runners</h3><span class="project-badge">Team of 2</span></div>
+                        <ul class="project-tags"><li>Android Studio</li><li>Java</li><li>Mobile</li></ul>
                         <p>Endless runner featuring roguelike progression. Three-lane swipe navigation, procedurally generated barriers, QTE events, randomised upgrade choices, achievement tracking, and a post-run leaderboard.</p>
-                        <div class="contribution">// Power-up System · Collectibles · Roguelike Upgrades · QTEs · Player Accounts · Scrolling BG</div>
+                        <p class="contribution">// Power-up System · Collectibles · Roguelike Upgrades · QTEs · Player Accounts · Scrolling BG</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card" data-tags="unity">
+                <article class="project-card" data-tags="unity">
                     <div class="media-wrapper">
-                        <div class="video-thumb" data-vid="kpK-cU0JMpU">
-                            <img src="https://img.youtube.com/vi/kpK-cU0JMpU/hqdefault.jpg" alt="Unity Shaders" loading="lazy">
-                            <button class="play-btn" aria-label="Play Unity Shaders video">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                        <button class="video-thumb" type="button" data-vid="kpK-cU0JMpU" aria-label="Play Unity Shaders video">
+                            <img src="https://img.youtube.com/vi/kpK-cU0JMpU/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                            <span class="play-btn" aria-hidden="true">▶ play</span>
+                        </button>
                     </div>
                     <div class="project-info">
-                        <div class="project-header"><h3>Unity Shaders</h3></div>
-                        <div class="project-tags"><span>Unity</span><span>HLSL</span><span>3D</span></div>
+                        <div class="project-header"><h3>Unity Shaders</h3><span class="project-badge">Solo</span></div>
+                        <ul class="project-tags"><li>Unity</li><li>HLSL</li><li>3D</li></ul>
                         <p>Custom HLSL shaders written from scratch: Blinn-Phong lighting, tangent-space normal mapping, PCF shadow filtering, and a water shader using vertex displacement, dual-scrolling normal maps, and Fresnel depth blending.</p>
-                        <div class="contribution">// Solo Project — All shaders written from scratch</div>
+                        <p class="contribution">// Solo project — all shaders written from scratch</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card" data-tags="unity">
+                <article class="project-card" data-tags="unity">
                     <div class="media-wrapper">
-                        <div class="video-thumb" data-vid="PITdSb0FITk">
-                            <img src="https://img.youtube.com/vi/PITdSb0FITk/hqdefault.jpg" alt="Unity 3D FPS" loading="lazy">
-                            <button class="play-btn" aria-label="Play Unity 3D FPS video">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                        <button class="video-thumb" type="button" data-vid="PITdSb0FITk" aria-label="Play Unity 3D FPS video">
+                            <img src="https://img.youtube.com/vi/PITdSb0FITk/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                            <span class="play-btn" aria-hidden="true">▶ play</span>
+                        </button>
                     </div>
                     <div class="project-info">
-                        <div class="project-header"><h3>Unity 3D FPS</h3></div>
-                        <div class="project-tags"><span>Unity</span><span>C#</span><span>3D</span></div>
+                        <div class="project-header"><h3>Unity 3D FPS</h3><span class="project-badge">Solo</span></div>
+                        <ul class="project-tags"><li>Unity</li><li>C#</li><li>3D</li></ul>
                         <p>First-person shooter prototype with a full movement system (walk, run, jump, wall-run, slide), raycast gun, physics gun, and homing missile mechanics.</p>
-                        <div class="contribution">// Solo Project</div>
+                        <p class="contribution">// Solo project</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card" data-tags="unity">
+                <article class="project-card" data-tags="unity">
                     <div class="media-wrapper">
-                        <div class="video-thumb" data-vid="OtHuZgdPUAg">
-                            <img src="https://img.youtube.com/vi/OtHuZgdPUAg/hqdefault.jpg" alt="Unity 3D Third Person" loading="lazy">
-                            <button class="play-btn" aria-label="Play Unity 3D Third Person video">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                        <button class="video-thumb" type="button" data-vid="OtHuZgdPUAg" aria-label="Play Unity 3D Third Person video">
+                            <img src="https://img.youtube.com/vi/OtHuZgdPUAg/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                            <span class="play-btn" aria-hidden="true">▶ play</span>
+                        </button>
                     </div>
                     <div class="project-info">
-                        <div class="project-header"><h3>Unity 3D Third Person</h3></div>
-                        <div class="project-tags"><span>Unity</span><span>C#</span><span>3D</span></div>
+                        <div class="project-header"><h3>Unity 3D Third Person</h3><span class="project-badge">Solo</span></div>
+                        <ul class="project-tags"><li>Unity</li><li>C#</li><li>3D</li></ul>
                         <p>Third-person combat prototype with chain combos, blocking, parry, heavy/special attacks, and stair traversal. Features CCTV camera, object inspection, and custom glitch, snow, and sonar shaders.</p>
-                        <div class="contribution">// Solo Project</div>
+                        <p class="contribution">// Solo project</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card" data-tags="opengl">
+                <article class="project-card" data-tags="opengl">
                     <div class="media-wrapper">
-                        <div class="video-thumb" data-vid="fq-YCfh8Bwo">
-                            <img src="https://img.youtube.com/vi/fq-YCfh8Bwo/hqdefault.jpg" alt="2D AI Simulation" loading="lazy">
-                            <button class="play-btn" aria-label="Play 2D AI Simulation video">
-                                <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M8 5v14l11-7z"/></svg>
-                            </button>
-                        </div>
+                        <button class="video-thumb" type="button" data-vid="fq-YCfh8Bwo" aria-label="Play 2D AI Simulation video">
+                            <img src="https://img.youtube.com/vi/fq-YCfh8Bwo/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                            <span class="play-btn" aria-hidden="true">▶ play</span>
+                        </button>
                     </div>
                     <div class="project-info">
-                        <div class="project-header"><h3>2D AI Simulation</h3></div>
-                        <div class="project-tags"><span>OpenGL</span><span>C++</span></div>
+                        <div class="project-header"><h3>2D AI Simulation</h3><span class="project-badge">Solo</span></div>
+                        <ul class="project-tags"><li>OpenGL</li><li>C++</li></ul>
                         <p>Turn-based strategy simulation with fog of war, finite state machine entities, A* and DFS pathfinding, action point economy, and a procedurally generated tile map with dynamic events.</p>
-                        <div class="contribution">// Solo Project</div>
+                        <p class="contribution">// Solo project</p>
                     </div>
-                </div>
+                </article>
 
             </div>
+            <p class="empty-note" id="empty-note" hidden>No projects match that filter.</p>
         </section>
 
-        <!-- ===== SKILLS / RESUME ===== -->
-        <section id="resume" class="page-module">
-            <h2 class="section-title">Skills & Info</h2>
+        <!-- ===== SKILLS / CONTACT ===== -->
+        <section id="skills" class="page" aria-labelledby="skills-title">
+            <p class="prompt">cat skills.txt</p>
+            <h2 id="skills-title" class="section-title">Skills &amp; Contact</h2>
             <div class="resume-grid">
                 <div class="skills-col">
-                    <h3 class="col-title">Languages</h3>
-                    <div class="skill-group">
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">C#</span><span class="skill-level-label">Advanced</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">C++</span><span class="skill-level-label">Proficient</span></div><div class="skill-bar"><div class="skill-fill" data-width="72"></div></div></div>
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">Java</span><span class="skill-level-label">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" data-width="55"></div></div></div>
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">Python</span><span class="skill-level-label">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" data-width="50"></div></div></div>
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">HTML · CSS · JS</span><span class="skill-level-label">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" data-width="50"></div></div></div>
+                    <div class="panel">
+                        <h3 class="col-title">Languages</h3>
+                        <ul class="skill-list">
+                            <li><span class="skill-name">C#</span><span class="skill-level lvl-4">advanced</span><span class="skill-used">Unity projects, VR, gameplay systems</span></li>
+                            <li><span class="skill-name">C++</span><span class="skill-level lvl-3">proficient</span><span class="skill-used">OpenGL AI simulation</span></li>
+                            <li><span class="skill-name">TypeScript · JS</span><span class="skill-level lvl-3">proficient</span><span class="skill-used">React web app, Electron, this site</span></li>
+                            <li><span class="skill-name">Python</span><span class="skill-level lvl-2">intermediate</span><span class="skill-used">API backend, editor scripting</span></li>
+                            <li><span class="skill-name">Java</span><span class="skill-level lvl-2">intermediate</span><span class="skill-used">Codeway Runners (Android)</span></li>
+                            <li><span class="skill-name">HLSL</span><span class="skill-level lvl-2">intermediate</span><span class="skill-used">Unity Shaders</span></li>
+                        </ul>
                     </div>
-                    <h3 class="col-title" style="margin-top:2rem;">Engines & Tools</h3>
-                    <div class="skill-group">
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">Unity</span><span class="skill-level-label">Advanced</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">OpenGL</span><span class="skill-level-label">Proficient</span></div><div class="skill-bar"><div class="skill-fill" data-width="68"></div></div></div>
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">Android Studio</span><span class="skill-level-label">Intermediate</span></div><div class="skill-bar"><div class="skill-fill" data-width="50"></div></div></div>
-                        <div class="skill-item"><div class="skill-header"><span class="skill-name">Unreal Engine</span><span class="skill-level-label">Familiar</span></div><div class="skill-bar"><div class="skill-fill" data-width="22"></div></div></div>
+                    <div class="panel">
+                        <h3 class="col-title">Engines &amp; Tools</h3>
+                        <ul class="skill-list">
+                            <li><span class="skill-name">Unity</span><span class="skill-level lvl-4">advanced</span><span class="skill-used">6 projects incl. VR for Meta Quest</span></li>
+                            <li><span class="skill-name">Unreal Engine 5</span><span class="skill-level lvl-2">intermediate</span><span class="skill-used">materials, Niagara/Blueprints, VR</span></li>
+                            <li><span class="skill-name">VR / XR</span><span class="skill-level lvl-2">intermediate</span><span class="skill-used">Meta XR SDK, OpenXR</span></li>
+                            <li><span class="skill-name">React · Electron</span><span class="skill-level lvl-2">intermediate</span><span class="skill-used">AI Study Companion</span></li>
+                            <li><span class="skill-name">OpenGL</span><span class="skill-level lvl-3">proficient</span><span class="skill-used">2D AI Simulation</span></li>
+                            <li><span class="skill-name">Android Studio</span><span class="skill-level lvl-2">intermediate</span><span class="skill-used">Codeway Runners</span></li>
+                            <li><span class="skill-name">Git · GitHub</span><span class="skill-level lvl-3">proficient</span><span class="skill-used">every project</span></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="info-col">
-                    <div class="info-card">
+                    <div class="panel">
                         <h3 class="col-title">Education</h3>
                         <div class="edu-school">Nanyang Polytechnic</div>
-                        <div class="edu-course">Diploma in Game Development & Technology</div>
-                        <div class="edu-year">2024 – 2027 · In Progress</div>
+                        <div class="edu-course">Diploma in Game Development &amp; Technology</div>
+                        <div class="edu-year">2024 – 2027 · in progress</div>
                     </div>
-                    <div class="info-card">
+                    <div class="panel" id="contact">
                         <h3 class="col-title">Contact</h3>
-                        <div class="contact-list">
-                            <a href="mailto:tanshangren07@gmail.com" class="contact-item"><span class="contact-icon">✉</span>tanshangren07@gmail.com</a>
-                            <a href="https://www.linkedin.com/in/tan-shang-ren-85a21b3a5/" target="_blank" rel="noopener" class="contact-item"><span class="contact-icon">in</span>Tan Shang Ren · LinkedIn</a>
-                        </div>
+                        <ul class="contact-list">
+                            <li><a href="mailto:tanshangren07@gmail.com" class="contact-item"><span class="contact-icon" aria-hidden="true">@</span>tanshangren07@gmail.com</a></li>
+                            <li><a href="https://www.linkedin.com/in/tan-shang-ren-85a21b3a5/" target="_blank" rel="noopener" class="contact-item"><span class="contact-icon" aria-hidden="true">in</span>LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                            <li><a href="https://github.com/Sinisterup" target="_blank" rel="noopener" class="contact-item"><span class="contact-icon" aria-hidden="true">gh</span>GitHub · Sinisterup<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+                        </ul>
                     </div>
-                    <div class="info-card">
+                    <div class="panel">
                         <h3 class="col-title">Looking For</h3>
                         <ul class="looking-list">
+                            <li>Internships in game or XR development</li>
                             <li>Freelance Unity / C# work</li>
                             <li>Part-time game dev roles</li>
                             <li>Indie game collaboration</li>
-                            <li>Internship opportunities</li>
                         </ul>
                     </div>
                 </div>
@@ -237,6 +337,22 @@
         </section>
 
     </main>
+
+    <!-- ===== FUNCTION-KEY BAR (main navigation) ===== -->
+    <nav class="keybar" aria-label="Main">
+        <a href="#home" class="key-link" data-route="home"><kbd>1</kbd>home</a>
+        <a href="#projects" class="key-link" data-route="projects"><kbd>2</kbd>projects</a>
+        <a href="#skills" class="key-link" data-route="skills"><kbd>3</kbd>skills</a>
+        <a href="mailto:tanshangren07@gmail.com" class="key-link"><kbd>4</kbd>email</a>
+        <span class="key-hint" aria-hidden="true"><kbd>alt×3</kbd>???</span>
+    </nav>
+
+    <!-- ===== ACCESS POPUP (Alt×3 / Caps Lock×3 easter egg) ===== -->
+    <div class="popup" id="popup" role="dialog" aria-modal="false" aria-labelledby="popup-title" hidden>
+        <p class="popup-title" id="popup-title">ACCESS GRANTED</p>
+        <p class="popup-body" id="popup-body"></p>
+        <button class="btn" type="button" id="popup-close">[ esc ]</button>
+    </div>
 
     <script src="main.js"></script>
 </body>
