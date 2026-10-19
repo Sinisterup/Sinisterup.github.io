@@ -279,6 +279,7 @@ document.querySelectorAll('.video-thumb').forEach(thumb => {
    LOCAL CLIPS — play while hovered / in view, only load when visible
    ============================================= */
 const clips = document.querySelectorAll('video.clip');
+if (reducedMotion) clips.forEach(v => { v.controls = true; });   // no autoplay: let people start it themselves
 if ('IntersectionObserver' in window && !reducedMotion) {
     const io = new IntersectionObserver(entries => {
         entries.forEach(({ target, isIntersecting }) => {

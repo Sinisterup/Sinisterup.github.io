@@ -246,7 +246,9 @@ main:focus { outline: none; }
     position: relative; min-height: 300px; overflow: hidden; background: #000;
     border-right: 1px solid var(--border);
 }
-.feature-media > img { width: 100%; height: 100%; object-fit: cover; }
+.feature-media > img, .feature-media > video { width: 100%; height: 100%; object-fit: cover; }
+.feature-media > video { position: absolute; inset: 0; }
+.feature-media > .feature-logo { position: absolute; left: 0.9rem; bottom: 0.7rem; width: 32%; max-width: 170px; height: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)); pointer-events: none; }
 .feature-media iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .feature-info { padding: 1.6rem 1.7rem; display: flex; flex-direction: column; gap: 0.8rem; }
 .feature-info h3 { font-family: var(--mono); font-size: 1.45rem; color: var(--text-bright); line-height: 1.2; }
