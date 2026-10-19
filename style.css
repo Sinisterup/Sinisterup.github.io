@@ -261,6 +261,12 @@ main:focus { outline: none; }
 .my-part { padding-top: 0.7rem; border-top: 1px dashed var(--border); }
 
 .archive-prompt { margin-top: 0; }
+.portfolio-grid + .archive-prompt { margin-top: 3.5rem; }
+
+/* Motion & Video: columns sized 16:9 vs 1:1 so both videos end up the same height */
+.motion-grid { display: grid; grid-template-columns: minmax(0, 1.78fr) minmax(0, 1fr); gap: 1.1rem; align-items: start; }
+.media-wrapper.square { aspect-ratio: 1 / 1; }
+@media (max-width: 760px) { .motion-grid { grid-template-columns: 1fr; } }
 
 /* =============================================
    PROJECTS — archive grid
