@@ -24,6 +24,10 @@ function currentRoute() {
 
 function showPage(route, focus) {
     pages.forEach(p => p.classList.toggle('active', p.id === route));
+    // stagger index for the page-enter animation (capped so long pages don't wait)
+    document.getElementById(route)
+        .querySelectorAll('.hero-grid > *, .stats, .feature, .project-card, .panel')
+        .forEach((el, i) => el.style.setProperty('--i', Math.min(i, 6)));
     document.querySelectorAll('[data-route]').forEach(a => {
         if (a.classList.contains('key-link')) {
             if (a.dataset.route === route) a.setAttribute('aria-current', 'page');
@@ -64,24 +68,6 @@ themeBtn.addEventListener('click', () => {
     applyPhosphor(next);
     store.set('phosphor', next);
 });
-
-/* =============================================
-   ROLE TYPEWRITER
-   ============================================= */
-const roles  = ['Gameplay Programmer', 'VR Developer', 'Shader Programmer', 'Unity Developer'];
-const typeEl = document.getElementById('typewriter');
-if (!reducedMotion) {
-    let r = 0, c = roles[0].length, deleting = true;
-    (function step() {
-        const word = roles[r];
-        typeEl.textContent = word.slice(0, c);
-        let delay = deleting ? 45 : 85;
-        if (deleting) {
-            if (--c < 0) { deleting = false; r = (r + 1) % roles.length; c = 0; delay = 300; }
-        } else if (++c > roles[r].length) { deleting = true; c = roles[r].length; delay = 1800; }
-        setTimeout(step, c === roles[0].length && r === 0 && deleting ? 1800 : delay);
-    })();
-}
 
 /* =============================================
    HACKER TERMINAL — every keypress types more of a real script
@@ -214,8 +200,9 @@ if (!reducedMotion) {
 }
 
 /* =============================================
-   KEYBOARD — 1-4 navigate, letters hack, Alt×3 / CapsLock×3 popups
+   KEYBOARD — 1-3 navigate, letters hack (over the monitor), Alt×3 / CapsLock×3 popups
    ============================================= */
+const monitor    = document.querySelector('.monitor');
 const popup      = document.getElementById('popup');
 const popupTitle = document.getElementById('popup-title');
 const popupBody  = document.getElementById('popup-body');
@@ -245,17 +232,16 @@ document.addEventListener('keydown', e => {
 
     clearTimeout(comboTimer);
     comboTimer = setTimeout(() => { altCount = capsCount = 0; }, 1200);
-    if (e.key === 'Alt')      { e.preventDefault(); if (++altCount === 3)  { altCount = 0;  openPopup(true); }  return; }
+    if (e.key === 'Alt')      { if (++altCount === 3)  { altCount = 0;  openPopup(true); }  return; }
     if (e.key === 'CapsLock') { if (++capsCount === 3) { capsCount = 0; openPopup(false); } return; }
 
     if (e.ctrlKey || e.metaKey || e.altKey) return;
 
     const nav = { '1': '#home', '2': '#projects', '3': '#skills' };
     if (nav[e.key]) { location.hash = nav[e.key]; return; }
-    if (e.key === '4') { location.href = 'mailto:tanshangren07@gmail.com'; return; }
 
-    // typing anywhere on the home page flips the monitor to the code tab, hackertyper-style
-    if (document.getElementById('home').classList.contains('active') && e.key.length === 1 && e.key !== ' ') {
+    // typing while pointing at (or focused in) the monitor flips it to the code tab, hackertyper-style
+    if (monitor.matches(':hover, :focus-within') && e.key.length === 1 && e.key !== ' ') {
         if (hackOut.hidden) showTab('code');
         hackType(3 + Math.floor(Math.random() * 4));
     }
@@ -280,7 +266,7 @@ document.querySelectorAll('.video-thumb').forEach(thumb => {
 /* =============================================
    TRAILER BUTTON — swaps a card's silent loop for the full YouTube trailer
    ============================================= */
-document.querySelectorAll('.trailer-btn').forEach(btn => {
+document.querySelectorAll('.trailer-btn[data-vid]').forEach(btn => {
     btn.addEventListener('click', () => {
         const media  = btn.parentElement;
         const iframe = document.createElement('iframe');
@@ -291,6 +277,21 @@ document.querySelectorAll('.trailer-btn').forEach(btn => {
         iframe.allowFullscreen = true;
         media.replaceChildren(iframe);
         iframe.focus();
+    });
+});
+
+/* =============================================
+   SOUND BUTTON — restarts a silent loop with audio and native controls
+   ============================================= */
+document.querySelectorAll('.sound-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const v = btn.parentElement.querySelector('video');
+        v.muted = false;
+        v.controls = true;
+        v.currentTime = 0;
+        v.play().catch(() => {});
+        btn.remove();
+        v.focus();
     });
 });
 
